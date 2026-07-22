@@ -51,8 +51,13 @@
     },
     {
       "columnTitle": "Contact Info",
-      "columnText": "84, Suraj Kund Road, Near - Suraj Kund Park, Suraj Kund, Meerut-250002, Uttar Pradesh.\n\nE-mail:manager@ogrecreations.com",
-      "columnLinks": []
+      "columnText": "84, Suraj Kund Road, Near - Suraj Kund Park, Suraj Kund, Meerut-250002, Uttar Pradesh.",
+      "columnLinks": [
+        {
+          "linkLabel": "E-mail:manager@ogrecreations.com",
+          "linkUrl": "mailto:manager@ogrecreations.com"
+        }
+      ]
     }
   ]
 }
