@@ -10,6 +10,7 @@ public_folder: "/og-recreations/images/uploads"
 local_backend: true
 
 collections:
+  # 1. GLOBAL SETTINGS MATRIX (Includes Contacts, Branding, and Socials)
   - name: "global_settings"
     label: "Global Elements Suite"
     delete: false
@@ -23,6 +24,14 @@ collections:
           - { label: "Direct Call Number", name: "callNumber", widget: "string" }
           - { label: "WhatsApp Contact Number", name: "whatsappNumber", widget: "string" }
           - { label: "WhatsApp Default Text Lead Message", name: "whatsappText", widget: "text" }
+
+      - name: "site_branding"
+        label: "Global Header Branding"
+        file: "src/data/branding.json"
+        fields:
+          - { label: "Site Logo Graphic Asset (Hides text if uploaded)", name: "logo", widget: "image", required: false }
+          - { label: "Fallback Site Title", name: "title", widget: "string" }
+          - { label: "Fallback Site Tagline", name: "tagline", widget: "string" }
           
       - name: "social_media"
         label: "Social Media Channels URLs"
@@ -32,7 +41,7 @@ collections:
           - { label: "Instagram Profile URL", name: "instagram", widget: "string", required: false }
           - { label: "YouTube Channel Link", name: "youtube", widget: "string", required: false }
 
-# 2. ENTRY FOLDER COLLECTION: Hero Sliders
+  # 2. ENTRY FOLDER COLLECTION: Hero Sliders
   - name: "hero_sliders"
     label: "Home Image Sliders"
     folder: "src/content/sliders"
@@ -73,7 +82,7 @@ collections:
       - { label: "Partner Corporate Logo Asset", name: "logo", widget: "image", required: false }
       - { label: "Target Redirection Website URL", name: "url", widget: "string" }
 
-# 5. ENTRY FOLDER COLLECTION: Synchronized 3-Pillar Services
+  # 5. ENTRY FOLDER COLLECTION: Synchronized 3-Pillar Services
   - name: "synchronized_services"
     label: "Dynamic 3-Pillar Services"
     folder: "src/content/services"
@@ -135,3 +144,28 @@ collections:
     fields:
       - { label: "Snapshot Performance Event Title", name: "title", widget: "string" }
       - { label: "High-Res Event Image File", name: "image", widget: "image" }
+
+  # 8. FIXED FILE-BASED SETTINGS COLLECTION: Footer Configuration
+  - name: "footer_architecture"
+    label: "Footer Navigation Framework"
+    delete: false
+    files:
+      - name: "footer_content"
+        label: "4-Column Footer Columns & Sort Order"
+        file: "src/data/footer.json"
+        fields:
+          - { label: "Copyright Sub-text Notice", name: "copyrightNotice", widget: "string" }
+          - label: "Dynamic Column Ordering Sequence"
+            name: "columnSequence"
+            widget: "list"
+            summary: "{{fields.columnTitle}}"
+            fields:
+              - { label: "Column Title Header", name: "columnTitle", widget: "string" }
+              - { label: "Column Presentation Text (For Vision Block)", name: "columnText", widget: "text", required: false }
+              - label: "Column Links Array List",
+                name: "columnLinks",
+                widget: "list",
+                required: false,
+                fields:
+                  - { label: "Link Display Label", name: "linkLabel", widget: "string" }
+                  - { label: "Link Target Route URL", name: "linkUrl", widget: "string" }
