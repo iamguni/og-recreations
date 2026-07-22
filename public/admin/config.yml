@@ -32,26 +32,7 @@ collections:
           - { label: "Instagram Profile URL", name: "instagram", widget: "string", required: false }
           - { label: "YouTube Channel Link", name: "youtube", widget: "string", required: false }
 
-      - name: "footer_architecture"
-        label: "4-Column Footer Customizer"
-        file: "src/data/footer.json"
-        fields:
-          - { label: "Copyright Sub-text Notice", name: "copyrightNotice", widget: "string" }
-          - label: "Dynamic Column Ordering Sequence"
-            name: "columnSequence"
-            widget: "list"
-            summary: "{{fields.columnTitle}}"
-            fields:
-              - { label: "Column Title Header", name: "columnTitle", widget: "string" }
-              - { label: "Column Text (For Vision / Info Blocks)", name: "columnText", widget: "text", required: false }
-              - label: "Column Links Array List",
-                name: "columnLinks",
-                widget: "list",
-                required: false,
-                fields:
-                  - { label: "Link Display Label", name: "linkLabel", widget: "string" }
-                  - { label: "Link Target Route URL", name: "linkUrl", widget: "string" }
-
+# 2. ENTRY FOLDER COLLECTION: Hero Sliders
   - name: "hero_sliders"
     label: "Home Image Sliders"
     folder: "src/content/sliders"
@@ -66,6 +47,7 @@ collections:
       - { label: "Call To Action Target Button Text", name: "ctaText", widget: "string" }
       - { label: "Call To Action Button Destination URL", name: "ctaUrl", widget: "string" }
 
+  # 3. ENTRY FOLDER COLLECTION: Chronicles Horizontal Timeline
   - name: "chronicles"
     label: "Chronicles of Our Past"
     folder: "src/content/chronicles"
@@ -79,6 +61,7 @@ collections:
       - { label: "Milestone Visual Banner Image", name: "image", widget: "image" }
       - { label: "Comprehensive Historical Description Summary", name: "description", widget: "text" }
 
+  # 4. ENTRY FOLDER COLLECTION: Institutional Partners
   - name: "institutional_partners"
     label: "Institutional Partners Grid"
     folder: "src/content/partners"
@@ -90,6 +73,7 @@ collections:
       - { label: "Partner Corporate Logo Asset", name: "logo", widget: "image", required: false }
       - { label: "Target Redirection Website URL", name: "url", widget: "string" }
 
+# 5. ENTRY FOLDER COLLECTION: Synchronized 3-Pillar Services
   - name: "synchronized_services"
     label: "Dynamic 3-Pillar Services"
     folder: "src/content/services"
@@ -122,6 +106,7 @@ collections:
             required: false
             field: { label: "Badge Tag", name: "badge", widget: "string" }
 
+  # 6. FILE-BASED SETTINGS COLLECTION: About Us Configuration Page
   - name: "about_us_page"
     label: "About Us Content"
     delete: false
@@ -140,6 +125,7 @@ collections:
           - { label: "Mission Graphic Banner Image", name: "missionImage", widget: "image" }
           - { label: "Mission Descriptive Body Paragraph", name: "missionText", widget: "text" }
 
+  # 7. ENTRY FOLDER COLLECTION: Event Photo Gallery Room
   - name: "photo_gallery"
     label: "Photo Gallery Room"
     folder: "src/content/gallery"
