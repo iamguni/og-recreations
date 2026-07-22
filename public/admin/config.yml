@@ -1,8 +1,9 @@
 backend:
   name: github
-  repo: yourusername/og-recreations
+  repo: iamguni/og-recreations
   branch: main
-  site_url: https://yourusername.github.io/og-recreations
+  base_url: https://sveltia-cms-auth.gurmeetworks.workers.dev
+  site_url: https://iamguni.in/og-recreations
 
 media_folder: "public/images/uploads"
 public_folder: "/og-recreations/images/uploads"
