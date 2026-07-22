@@ -3,6 +3,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://yourusername.github.io',
+  site: 'https://iamguni.in',
   base: '/og-recreations',
 });
