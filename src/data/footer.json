@@ -1,1 +1,58 @@
-{"copyrightNotice": "© 2026 OG Recreations. All Rights Reserved.", "columnSequence": [{"columnTitle": "Our Vision", "columnText": "To revive corporate and community spirits through powerful literature, flawless cultural organization, and pristine artistic performances."}, {"columnTitle": "Quick Links", "columnLinks": [{"linkLabel": "Home", "linkUrl": "/og-recreations/"}, {"linkLabel": "About Us", "linkUrl": "/og-recreations/about"}, {"linkLabel": "Event Gallery", "linkUrl": "/og-recreations/gallery"}]}, {"columnTitle": "Our Services", "columnLinks": [{"linkLabel": "Entertainment Shows", "linkUrl": "/og-recreations/services/entertainment"}, {"linkLabel": "Speakers & Workshops", "linkUrl": "/og-recreations/services/speakers-workshops"}, {"linkLabel": "Professional Anchoring", "linkUrl": "/og-recreations/services/anchoring"}]}, {"columnTitle": "Contact Info", "columnText": "Level 4, Corporate Heights, Sector 62, Noida / Ghaziabad, UP, India"}]}
+{
+  "copyrightNotice": "© 2026 OG Recreations. All Rights Reserved.",
+  "columnSequence": [
+    {
+      "columnTitle": "Our Vision",
+      "columnText": "To revive corporate and community spirits through powerful literature, flawless cultural organization, and pristine artistic performances."
+    },
+    {
+      "columnTitle": "Quick Links",
+      "columnText": "",
+      "columnLinks": [
+        {
+          "linkLabel": "Home",
+          "linkUrl": "/og-recreations/"
+        },
+        {
+          "linkLabel": "About Us",
+          "linkUrl": "/og-recreations/about"
+        },
+        {
+          "linkLabel": "Event Gallery",
+          "linkUrl": "/og-recreations/gallery"
+        },
+        {
+          "linkLabel": "Join Us",
+          "linkUrl": "/og-recreations/join"
+        },
+        {
+          "linkLabel": "Book An Event",
+          "linkUrl": "/og-recreations/book"
+        }
+      ]
+    },
+    {
+      "columnTitle": "Our Services",
+      "columnText": "",
+      "columnLinks": [
+        {
+          "linkLabel": "Entertainment Shows",
+          "linkUrl": "/og-recreations/services/entertainment"
+        },
+        {
+          "linkLabel": "Speakers & Workshops",
+          "linkUrl": "/og-recreations/services/speakers-workshops"
+        },
+        {
+          "linkLabel": "Professional Anchoring",
+          "linkUrl": "/og-recreations/services/anchoring"
+        }
+      ]
+    },
+    {
+      "columnTitle": "Contact Info",
+      "columnText": "84, Suraj Kund Road, Near - Suraj Kund Park, Suraj Kund, Meerut-250002, Uttar Pradesh.\n\nE-mail:manager@ogrecreations.com",
+      "columnLinks": []
+    }
+  ]
+}
