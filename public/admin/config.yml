@@ -53,6 +53,15 @@ collections:
                   - { label: "Link Display Label", name: "linkLabel", widget: "string" }
                   - { label: "Link Target Route URL", name: "linkUrl", widget: "string" }
 
+        # 👇 THIS SPECIFIC BLOCK ADDS THE OPTIONS TO YOUR CMS PANEL
+      - name: "site_branding"
+        label: "Global Header Branding"
+        file: "src/data/branding.json"
+        fields:
+          - { label: "Site Logo Graphic Asset (Hides text if uploaded)", name: "logo", widget: "image", required: false }
+          - { label: "Fallback Site Title", name: "title", widget: "string" }
+          - { label: "Fallback Site Tagline", name: "tagline", widget: "string" }
+
 # 2. ENTRY FOLDER COLLECTION: Hero Sliders
   - name: "hero_sliders"
     label: "Home Image Sliders"

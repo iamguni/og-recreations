@@ -1,52 +1,83 @@
 ---
 import communicationData from '../data/communication.json';
+import socialsData from '../data/socials.json';
+import brandingData from '../data/branding.json';
 import { getCollection } from 'astro:content';
 
 // Query dynamic services to populate navigation sub-menus automatically
 const cmsServices = await getCollection('services');
 
-// Fallbacks for site branding configs (Can be expanded in global_settings file block)
-const siteBranding = {
-  logo: "", // If updated via CMS to an image path (e.g. "/og-recreations/images/uploads/logo.png"), text will hide
-  title: "OG RECREATIONS",
-  tagline: "The Original Stress Buster"
-};
+// Check if logo exists and is not an empty string
+const hasLogo = brandingData && brandingData.logo && brandingData.logo.trim() !== "";
 
-const callLink = `tel:${communicationData.callNumber.replace(/\s+/g, '')}`;
-const whatsappLink = `https://wa.me/${communicationData.whatsappNumber.replace(/\s+/g, '')}?text=${encodeURIComponent(communicationData.whatsappText)}`;
+// Safely generate the correct path link for the uploaded logo asset
+let computedLogoSrc = "";
+if (hasLogo) {
+  const logoPath = brandingData.logo;
+  // If the path is already a full URL or already includes the subdirectory path base
+  if (logoPath.startsWith('http') || logoPath.startsWith('/og-recreations')) {
+    computedLogoSrc = logoPath;
+  } else {
+    // Standardize leading slash matching constraints
+    computedLogoSrc = `/og-recreations${logoPath.startsWith('/') ? '' : '/'}${logoPath}`;
+  }
+}
+
+// Parse communication links dynamically
+const callLink = `tel:${communicationData.callNumber ? communicationData.callNumber.replace(/\s+/g, '') : ''}`;
+const whatsappLink = `https://wa.me/${communicationData.whatsappNumber ? communicationData.whatsappNumber.replace(/\s+/g, '') : ''}?text=${encodeURIComponent(communicationData.whatsappText || '')}`;
 ---
 <header class="sticky top-0 z-50 bg-brand-blue border-b border-brand-gold/30 shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
     
-    <!-- Conditional Site Branding Logo Block -->
-    <a href="/og-recreations/" class="flex items-center space-x-2">
-      {siteBranding.logo ? (
-        <img src={siteBranding.logo} alt={siteBranding.title} class="h-12 w-auto object-contain" />
+    <!-- Dynamic Site Branding Logo / Text Block Node -->
+    <a href="/og-recreations/" class="flex items-center space-x-2 group">
+      {hasLogo ? (
+        /* Condition A: Logo is present -> Render ONLY the logo graphic element */
+        <img 
+          src={computedLogoSrc} 
+          alt={brandingData.title || "OG Recreations Logo"} 
+          class="h-14 w-auto object-contain max-w-[220px] block"
+          loading="eager"
+        />
       ) : (
+        /* Condition B: Logo is absent -> Render Textual Fallbacks */
         <>
-          <div class="w-10 h-10 rounded-full border-2 border-brand-gold bg-gradient-to-br from-brand-blue to-brand-lightBlue flex items-center justify-center font-serif text-xl font-bold text-brand-gold shadow-md">OG</div>
+          <div class="w-10 h-10 rounded-full border-2 border-brand-gold bg-gradient-to-br from-brand-blue to-brand-lightBlue flex items-center justify-center font-serif text-xl font-bold text-brand-gold shadow-md group-hover:scale-105 transition-transform duration-300">
+            OG
+          </div>
           <div>
-            <span class="block text-lg font-bold tracking-wider font-serif text-white">{siteBranding.title}</span>
-            <span class="block text-[10px] uppercase tracking-widest text-brand-gold font-medium">{siteBranding.tagline}</span>
+            <span class="block text-lg font-bold tracking-wider font-serif text-white uppercase">
+              {brandingData.title || "OG RECREATIONS"}
+            </span>
+            <span class="block text-[10px] uppercase tracking-widest text-brand-gold font-medium">
+              {brandingData.tagline || "The Original Stress Buster"}
+            </span>
           </div>
         </>
       )}
     </a>
 
-    <!-- Nav Links (Desktop) -->
+    <!-- Navigation Menu Links (Desktop Layout Track) -->
     <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium tracking-wide">
       <a href="/og-recreations/" class="text-white hover:text-brand-gold transition duration-200">Home</a>
       <a href="/og-recreations/about" class="text-white hover:text-brand-gold transition duration-200">About Us</a>
       
+      <!-- Sub-Menu Roster Dropdown for Services -->
       <div class="relative group">
         <button class="text-white group-hover:text-brand-gold flex items-center gap-1 py-2 focus:outline-none transition">
           Services
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
         </button>
         <div class="absolute left-0 mt-1 w-64 rounded-xl shadow-2xl bg-white border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 py-2">
           {cmsServices.map((srv) => (
-            <a href={`/og-recreations/services/${srv.slugId}`} class="block px-4 py-2 text-sm text-brand-blue hover:bg-brand-bgLight hover:text-brand-gold font-semibold">
-              {srv.title}
+            <a 
+              href={`/og-recreations/services/${srv.data?.slugId || srv.slug}`} 
+              class="block px-4 py-2 text-sm text-brand-blue hover:bg-brand-bgLight hover:text-brand-gold font-semibold transition"
+            >
+              {srv.data?.title || srv.slug}
             </a>
           ))}
         </div>
@@ -58,15 +89,18 @@ const whatsappLink = `https://wa.me/${communicationData.whatsappNumber.replace(/
       <a href="/og-recreations/forms/contact" class="text-white hover:text-brand-gold transition duration-200">Contact Us</a>
     </nav>
 
+    <!-- Communication Quick Access Actions -->
     <div class="hidden lg:flex items-center space-x-3">
-      <a href={callLink} class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-blue font-bold text-xs transition-all duration-300">Call Us</a>
-      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-xs transition-all duration-300">WhatsApp</a>
+      {communicationData.callNumber && (
+        <a href={callLink} class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-blue font-bold text-xs transition-all duration-300">
+          Call Us
+        </a>
+      )}
+      {communicationData.whatsappNumber && (
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-xs transition-all duration-300">
+          WhatsApp
+        </a>
+      )}
     </div>
   </div>
 </header>
-
-<script>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => { menu?.classList.toggle('hidden'); });
-</script>
