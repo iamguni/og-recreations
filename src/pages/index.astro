@@ -7,8 +7,12 @@ const cmsServices = await getCollection('services');
 const cmsChronicles = await getCollection('chronicles');
 const cmsPartners = await getCollection('partners');
 
-// Sort chronicles by year descending
-const sortedChronicles = cmsChronicles.sort((a, b) => b.year.localeCompare(a.year));
+// Safely sort chronicles by year descending, providing an empty string fallback if 'year' is missing
+const sortedChronicles = cmsChronicles.sort((a, b) => {
+  const yearB = b.year || '';
+  const yearA = a.year || '';
+  return yearB.localeCompare(yearA);
+});
 ---
 <BaseLayout title="OG Recreations - The Original Stress Buster">
   <HeroSlider />
