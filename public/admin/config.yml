@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: iamguni/og-recreations
-  branch: main
+  branch: master
   base_url: https://sveltia-cms-auth.gurmeetworks.workers.dev
   site_url: https://iamguni.in/og-recreations
 
