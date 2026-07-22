@@ -1,0 +1,76 @@
+---
+import communicationData from '../data/communication.json';
+import { getCollection } from 'astro:content';
+
+const cmsServices = await getCollection('services');
+
+const callLink = `tel:${communicationData.callNumber.replace(/\s+/g, '')}`;
+const whatsappLink = `https://wa.me/${communicationData.whatsappNumber.replace(/\s+/g, '')}?text=${encodeURIComponent(communicationData.whatsappText)}`;
+---
+<header class="sticky top-0 z-50 bg-brand-blue border-b border-brand-gold/30 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <a href="/og-recreations/" class="flex items-center space-x-2">
+      <div class="w-10 h-10 rounded-full border-2 border-brand-gold bg-gradient-to-br from-brand-blue to-brand-lightBlue flex items-center justify-center font-serif text-xl font-bold text-brand-gold shadow-md">OG</div>
+      <div>
+        <span class="block text-lg font-bold tracking-wider font-serif text-white">OG RECREATIONS</span>
+        <span class="block text-[10px] uppercase tracking-widest text-brand-gold font-medium">The Original Stress Buster</span>
+      </div>
+    </a>
+
+    <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium tracking-wide">
+      <a href="/og-recreations/" class="text-white hover:text-brand-gold transition duration-200">Home</a>
+      <a href="/og-recreations/about" class="text-white hover:text-brand-gold transition duration-200">About Us</a>
+      
+      <div class="relative group">
+        <button class="text-white group-hover:text-brand-gold flex items-center gap-1 py-2 focus:outline-none transition">
+          Services
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="absolute left-0 mt-1 w-64 rounded-xl shadow-2xl bg-white border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 py-2">
+          {cmsServices.map((srv) => (
+            <a href={`/og-recreations/services/${srv.data.slugId}`} class="block px-4 py-2 text-sm text-brand-blue hover:bg-brand-bgLight hover:text-brand-gold font-semibold">
+              {srv.data.title}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href="/og-recreations/gallery" class="text-white hover:text-brand-gold transition duration-200">Gallery</a>
+      <a href="/og-recreations/forms/book" class="text-brand-gold hover:text-white transition duration-200 font-semibold">Book Us</a>
+      <a href="/og-recreations/forms/join" class="text-white hover:text-brand-gold transition duration-200">Join Us</a>
+      <a href="/og-recreations/forms/contact" class="text-white hover:text-brand-gold transition duration-200">Contact Us</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center space-x-3">
+      <a href={callLink} class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-blue font-bold text-xs transition-all duration-300">Call Us</a>
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-xs transition-all duration-300">WhatsApp</a>
+    </div>
+
+    <div class="xl:hidden">
+      <button id="mobile-menu-btn" class="text-white focus:outline-none p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden xl:hidden bg-brand-blue border-t border-brand-gold/20 px-4 pt-2 pb-6 space-y-3">
+    <a href="/og-recreations/" class="block text-white py-2 font-medium border-b border-gray-800">Home</a>
+    <a href="/og-recreations/about" class="block text-white py-2 font-medium border-b border-gray-800">About Us</a>
+    <div class="pl-2 space-y-1 py-1 border-b border-gray-800">
+      <span class="block text-brand-gold text-xs font-bold uppercase tracking-wider">Services</span>
+      {cmsServices.map((srv) => (
+        <a href={`/og-recreations/services/${srv.data.slugId}`} class="block text-gray-300 py-1 text-sm pl-2">{srv.data.title}</a>
+      ))}
+    </div>
+    <a href="/og-recreations/gallery" class="block text-white py-2 font-medium border-b border-gray-800">Gallery</a>
+    <a href="/og-recreations/forms/book" class="block text-brand-gold py-2 font-semibold border-b border-gray-800">Book Us</a>
+    <a href="/og-recreations/forms/join" class="block text-white py-2 font-medium border-b border-gray-800">Join Us</a>
+    <a href="/og-recreations/forms/contact" class="block text-white py-2 font-medium border-b border-gray-800">Contact Us</a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => { menu?.classList.toggle('hidden'); });
+</script>

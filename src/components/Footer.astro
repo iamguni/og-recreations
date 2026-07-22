@@ -1,0 +1,31 @@
+---
+import footerConfig from '../data/footer.json';
+import socialsData from '../data/socials.json';
+---
+<footer class="bg-brand-blue text-gray-300 pt-16 pb-8 border-t-4 border-brand-gold mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    {footerConfig.columnSequence.map((col) => (
+      <div>
+        <h3 class="font-serif text-lg font-bold text-white tracking-wide border-b border-brand-gold/30 pb-2 mb-4">
+          {col.columnTitle}
+        </h3>
+        {col.columnText && ( <p class="text-sm leading-relaxed text-gray-400">{col.columnText}</p> )}
+        {col.columnLinks && (
+          <ul class="space-y-2 text-sm font-medium">
+            {col.columnLinks.map((link) => (
+              <li><a href={link.linkUrl} class="hover:text-brand-gold transition duration-150">{link.linkLabel}</a></li>
+            ))}
+          </ul>
+        )}
+      </div>
+    ))}
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex space-x-6">
+      {socialsData.facebook && <a href={socialsData.facebook} class="text-gray-400 hover:text-brand-gold text-sm font-bold">Facebook</a>}
+      {socialsData.instagram && <a href={socialsData.instagram} class="text-gray-400 hover:text-brand-gold text-sm font-bold">Instagram</a>}
+      {socialsData.youtube && <a href={socialsData.youtube} class="text-gray-400 hover:text-brand-gold text-sm font-bold">YouTube</a>}
+    </div>
+    <p class="text-xs text-gray-500 font-medium">{footerConfig.copyrightNotice}</p>
+  </div>
+</footer>

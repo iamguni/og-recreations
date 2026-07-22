@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const cmsPhotos = await getCollection('gallery');
+---
+<BaseLayout title="Event Gallery - OG Recreations">
+  <section class="relative py-24 bg-brand-blue text-white overflow-hidden border-b-4 border-brand-gold">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-wide">Captured Moments & Energy</h1>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {cmsPhotos.map((img) => (
+          <div class="group relative rounded-2xl overflow-hidden shadow-md border border-gray-200 bg-brand-blue h-72">
+            <img src={img.data.image} alt={img.data.title} class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent opacity-90 z-10"></div>
+            <div class="absolute bottom-5 left-5 right-5 z-20">
+              <h3 class="text-white font-serif text-xl font-bold">{img.data.title}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

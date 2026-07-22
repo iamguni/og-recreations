@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #1F2937; }
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #AA881B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

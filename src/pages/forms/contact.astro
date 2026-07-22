@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact Us - OG Recreations">
+  <section class="py-12 bg-brand-bgLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Card Container Box -->
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+        <!-- Branded Header Section -->
+        <div class="bg-brand-blue text-white p-8 border-b-4 border-brand-gold text-center">
+          <h1 class="font-serif text-3xl font-bold tracking-wide">Contact Us</h1>
+          <p class="text-brand-gold text-xs font-medium tracking-widest uppercase mt-2">
+            The Original Stress Buster — Let's build your next premium stage experience
+          </p>
+        </div>
+
+        <!-- Submission Contact Form Layout -->
+        <form id="app-script-contact-form" class="p-8 space-y-6">
+          <input type="hidden" name="formType" value="GENERAL_CONTACT_DESK" />
+
+          <!-- Core Fields Grid Layer -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
+              <input 
+                type="text" 
+                name="firstName" 
+                required 
+                class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" 
+                placeholder="Enter your first name" 
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+              <div class="relative flex rounded-lg shadow-xs">
+                <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-xs font-bold font-mono">
+                  🇮🇳 +91
+                </span>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  required 
+                  pattern="[0-9]{10}"
+                  class="w-full rounded-r-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" 
+                  placeholder="10-digit mobile number" 
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Message Textarea Area with Character Counter Tracking -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="block text-sm font-semibold text-gray-700">Message</label>
+              <span id="char-counter" class="text-xs font-mono font-semibold text-gray-400">0 / 180</span>
+            </div>
+            <textarea 
+              id="message-input"
+              name="message" 
+              rows="4" 
+              maxlength="180"
+              class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue placeholder:text-gray-400 resize-none" 
+              placeholder="Type your message here..."
+            ></textarea>
+          </div>
+
+          <!-- Server Response Notification Components -->
+          <div id="contact-alert-success" class="hidden p-4 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
+            ✓ Success! Your message parameters have been transmitted safely to our corporate Google Sheet via Apps Script.
+          </div>
+          <div id="contact-alert-error" class="hidden p-4 rounded-xl bg-rose-50 text-rose-800 text-xs font-semibold border border-rose-200">
+            ✕ Error communicating with processing script macro loop. Please verify your connection context and try again.
+          </div>
+
+          <!-- Submit Trigger Button Component -->
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              id="submit-contact-btn"
+              class="w-full bg-brand-blue hover:bg-brand-lightBlue text-white font-bold py-3.5 px-6 rounded-lg transition-all duration-300 shadow-md tracking-wider uppercase text-xs border border-brand-gold/40 flex items-center justify-center gap-2"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Script Mechanics Engine -->
+  <script is:inline>
+    // Live Character Counter Logic Implementation
+    const msgInput = document.getElementById('message-input');
+    const charCount = document.getElementById('char-counter');
+    
+    msgInput?.addEventListener('input', (e) => {
+      const len = e.target.value.length;
+      if (charCount) {
+        charCount.innerText = `${len} / 180`;
+        // Dynamic color shifting accent validation for user feedback context
+        if (len >= 170) {
+          charCount.className = "text-xs font-mono font-semibold text-rose-500";
+        } else if (len >= 140) {
+          charCount.className = "text-xs font-mono font-semibold text-brand-gold";
+        } else {
+          charCount.className = "text-xs font-mono font-semibold text-gray-400";
+        }
+      }
+    });
+
+    // Replace parameter code macro token with active deployed Apps Script deployment macro execution link string URL
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec";
+
+    const form = document.getElementById('app-script-contact-form');
+    const btn = document.getElementById('submit-contact-btn');
+    const successAlert = document.getElementById('contact-alert-success');
+    const errorAlert = document.getElementById('contact-alert-error');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      btn.disabled = true;
+      btn.innerHTML = `<svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Dispatched Matrix Transmission...`;
+      successAlert.classList.add('hidden');
+      errorAlert.classList.add('hidden');
+
+      const formData = new FormData(form);
+      const dataObj = {};
+      formData.forEach((value, key) => { dataObj[key] = value; });
+      
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataObj)
+        });
+        
+        successAlert.classList.remove('hidden');
+        form.reset();
+        if (charCount) charCount.innerText = "0 / 180";
+      } catch (err) {
+        console.error(err);
+        errorAlert.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "Send Message";
+      }
+    });
+  </script>
+</BaseLayout>

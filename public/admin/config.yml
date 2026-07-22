@@ -1,0 +1,136 @@
+backend:
+  name: github
+  repo: yourusername/og-recreations
+  branch: main
+  site_url: https://yourusername.github.io/og-recreations
+
+media_folder: "public/images/uploads"
+public_folder: "/og-recreations/images/uploads"
+local_backend: true
+
+collections:
+  - name: "global_settings"
+    label: "Global Elements Suite"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "communication_desk"
+        label: "Primary Communication Nodes"
+        file: "src/data/communication.json"
+        fields:
+          - { label: "Direct Call Number", name: "callNumber", widget: "string" }
+          - { label: "WhatsApp Contact Number", name: "whatsappNumber", widget: "string" }
+          - { label: "WhatsApp Default Text Lead Message", name: "whatsappText", widget: "text" }
+          
+      - name: "social_media"
+        label: "Social Media Channels URLs"
+        file: "src/data/socials.json"
+        fields:
+          - { label: "Facebook Page Profile URL", name: "facebook", widget: "string", required: false }
+          - { label: "Instagram Profile URL", name: "instagram", widget: "string", required: false }
+          - { label: "YouTube Channel Link", name: "youtube", widget: "string", required: false }
+
+# 2. ENTRY FOLDER COLLECTION: Hero Sliders
+  - name: "hero_sliders"
+    label: "Home Image Sliders"
+    folder: "src/content/sliders"
+    create: true
+    slug: "{{title}}"
+    format: "json"
+    fields:
+      - { label: "Slide Identifier Title", name: "title", widget: "string" }
+      - { label: "Slider Tagline / Banner Text", name: "tagline", widget: "string" }
+      - { label: "Hero Main Typography Headline", name: "headline", widget: "string" }
+      - { label: "Slide Main Graphic Image", name: "image", widget: "image" }
+      - { label: "Call To Action Target Button Text", name: "ctaText", widget: "string" }
+      - { label: "Call To Action Button Destination URL", name: "ctaUrl", widget: "string" }
+
+  # 3. ENTRY FOLDER COLLECTION: Chronicles Horizontal Timeline
+  - name: "chronicles"
+    label: "Chronicles of Our Past"
+    folder: "src/content/chronicles"
+    create: true
+    slug: "{{year}}-{{month}}-{{title}}"
+    format: "json"
+    fields:
+      - { label: "Event Short Identifier Title", name: "title", widget: "string" }
+      - { label: "Event Target Year", name: "year", widget: "string" }
+      - { label: "Event Target Month", name: "month", widget: "string" }
+      - { label: "Milestone Visual Banner Image", name: "image", widget: "image" }
+      - { label: "Comprehensive Historical Description Summary", name: "description", widget: "text" }
+
+  # 4. ENTRY FOLDER COLLECTION: Institutional Partners
+  - name: "institutional_partners"
+    label: "Institutional Partners Grid"
+    folder: "src/content/partners"
+    create: true
+    slug: "{{title}}"
+    format: "json"
+    fields:
+      - { label: "Partner Corporate Name", name: "title", widget: "string" }
+      - { label: "Partner Corporate Logo Asset", name: "logo", widget: "image", required: false }
+      - { label: "Target Redirection Website URL", name: "url", widget: "string" }
+
+# 5. ENTRY FOLDER COLLECTION: Synchronized 3-Pillar Services
+  - name: "synchronized_services"
+    label: "Dynamic 3-Pillar Services"
+    folder: "src/content/services"
+    create: true
+    slug: "{{slugId}}"
+    format: "json"
+    fields:
+      - { label: "Service Pillar Title", name: "title", widget: "string" }
+      - { label: "Unique Service URL Route Identifier", name: "slugId", widget: "string" }
+      - { label: "Service Main Visual Card Image", name: "image", widget: "image" }
+      - { label: "Brief Presentation Intro Summary", name: "description", widget: "text" }
+      - label: "Modern Layout Sub-Services Matrix"
+        name: "subServices"
+        widget: "list"
+        summary: "{{fields.subServiceTitle}}"
+        fields:
+          - { label: "Sub-Service Title Name", name: "subServiceTitle", widget: "string" }
+          - { label: "Sub-Service Tagline", name: "subServiceTagline", widget: "string", required: false }
+          - { label: "Sub-Service Focus Summary Brief", name: "subServiceBrief", widget: "text" }
+          - { label: "Energy / Vibe Parameter Label", name: "energyVibe", widget: "string", required: false }
+          - { label: "Target Audience Demographics", name: "targetAudience", widget: "string", required: false }
+          - { label: "Sub-Service Graphic Image Asset", name: "subServiceImage", widget: "image", required: false }
+          - label: "Core Execution Metrics (Tags)"
+            name: "deliveryMetrics"
+            widget: "list"
+            field: { label: "Metric Tag", name: "tag", widget: "string" }
+          - label: "Popular Program Focus Badges"
+            name: "focusBadges"
+            widget: "list"
+            required: false
+            field: { label: "Badge Tag", name: "badge", widget: "string" }
+
+  # 6. FILE-BASED SETTINGS COLLECTION: About Us Configuration Page
+  - name: "about_us_page"
+    label: "About Us Content"
+    delete: false
+    files:
+      - name: "about_content"
+        label: "About Us Narrative Blocks"
+        file: "src/data/about.json"
+        fields:
+          - { label: "Dynamic Video Display Mode", name: "videoMode", widget: "select", options: ["URL", "Upload"] }
+          - { label: "Video Destination URL", name: "videoUrl", widget: "string", required: false }
+          - { label: "Direct Video Asset Upload Node", name: "videoFile", widget: "file", required: false }
+          - { label: "Vision Headline", name: "visionTitle", widget: "string" }
+          - { label: "Vision Graphic Banner Image", name: "visionImage", widget: "image" }
+          - { label: "Vision Descriptive Body Paragraph", name: "visionText", widget: "text" }
+          - { label: "Mission Headline", name: "missionTitle", widget: "string" }
+          - { label: "Mission Graphic Banner Image", name: "missionImage", widget: "image" }
+          - { label: "Mission Descriptive Body Paragraph", name: "missionText", widget: "text" }
+
+  # 7. ENTRY FOLDER COLLECTION: Event Photo Gallery Room
+  - name: "photo_gallery"
+    label: "Photo Gallery Room"
+    folder: "src/content/gallery"
+    create: true
+    slug: "{{title}}"
+    format: "json"
+    fields:
+      - { label: "Snapshot Performance Event Title", name: "title", widget: "string" }
+      - { label: "High-Res Event Image File", name: "image", widget: "image" }

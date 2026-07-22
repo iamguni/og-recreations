@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const eventOptions = [
+  "Poetry show", "Comedy show", "Workshop", "Guest lecture", 
+  "Subject expert", "Singer", "Dancer", "Anchor", "Other"
+];
+
+const countries = [
+  "India", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", 
+  "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", 
+  "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", 
+  "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei", 
+  "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Cayman Islands", 
+  "Central African Republic", "Chad", "Chile", "China, People's Republic of", "Christmas Island", "Cocos Islands", 
+  "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Cook Islands", "Costa Rica", 
+  "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Côte d'Ivoire", "Denmark", "Djibouti", "Dominica", 
+  "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", 
+  "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "France, Metropolitan", "French Guiana", 
+  "French Polynesia", "French South Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", 
+  "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", 
+  "Guyana", "Haiti", "Heard Island And Mcdonald Island", "Honduras", "Hong Kong", "Hungary", "Iceland", "Indonesia", 
+  "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Johnston Island", "Jordan", 
+  "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kosovo", 
+  "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", 
+  "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", 
+  "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia", 
+  "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", 
+  "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", 
+  "Nigeria", "Niue", "Norfolk Island", "North Macedonia", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", 
+  "Palau", "Palestine, State of", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", 
+  "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion Island", "Romania", "Russia", "Rwanda", "Saint Helena", 
+  "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre & Miquelon", "Saint Vincent and the Grenadines", "Samoa", 
+  "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", 
+  "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", 
+  "South Georgia and South Sandwich", "Spain", "Sri Lanka", "Stateless Persons", "Sudan", "Sudan, South", 
+  "Suriname", "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan, Republic of China", 
+  "Tajikistan", "Tanzania", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", 
+  "Turkmenistan", "Turks And Caicos Islands", "Tuvalu", "US Minor Outlying Islands", "Uganda", "Ukraine", 
+  "United Arab Emirates", "United Kingdom", "United States of America (USA)", "Uruguay", "Uzbekistan", "Vanuatu", 
+  "Vatican City", "Venezuela", "Vietnam", "Virgin Islands, British", "Virgin Islands, U.S.", "Wallis And Futuna Islands", 
+  "Western Sahara", "Yemen", "Zambia", "Zimbabwe"
+];
+---
+
+<BaseLayout title="Book an Event Session - OG Recreations">
+  <section class="py-12 bg-brand-bgLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Card Layout Wrapper Container -->
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+        <!-- Elegant Royal Blue Logo Header Box -->
+        <div class="bg-brand-blue text-white p-8 border-b-4 border-brand-gold text-center">
+          <h1 class="font-serif text-3xl font-bold tracking-wide">Book Our Services</h1>
+          <p class="text-brand-gold text-xs font-medium tracking-widest uppercase mt-2">
+            The Original Stress Buster — Secure Custom Rosters for Your Next Stage
+          </p>
+        </div>
+
+        <!-- Submission Booking Form -->
+        <form id="app-script-booking-form" class="p-8 space-y-6">
+          <input type="hidden" name="formType" value="EVENT_BOOKING_REQUEST" />
+
+          <!-- 1. Selection Matrix Column Grid -->
+          <div>
+            <label class="block text-sm font-bold text-brand-blue mb-3">Want to book *</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {eventOptions.map((option) => (
+                <label class="flex items-center gap-2.5 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-brand-bgLight hover:border-brand-gold/60 transition bg-gray-50/40">
+                  <input type="radio" name="wantToBook" value={option} required class="w-4 h-4 text-brand-blue focus:ring-brand-blue border-gray-300" />
+                  <span class="text-xs font-semibold text-gray-700">{option}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- 2. Timelines & Commercial Parameters -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Expected Date *</label>
+              <input type="date" name="expectedDate" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Expected Budget *</label>
+              <input type="text" name="expectedBudget" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="e.g. INR 1,50,000" />
+            </div>
+          </div>
+
+          <!-- 3. Full Geographic Location Form Group Matrix -->
+          <div class="bg-gray-50/50 border border-gray-200 rounded-xl p-5 space-y-4">
+            <h3 class="text-xs uppercase font-bold tracking-widest text-brand-blue font-mono border-b border-gray-200 pb-2">Venue Geographic Target Details</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">City *</label>
+                <input type="text" name="city" required class="w-full rounded-lg bg-white border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="e.g. Noida / Ghaziabad" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">State / Province</label>
+                <input type="text" name="stateProvince" class="w-full rounded-lg bg-white border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="e.g. Uttar Pradesh" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">ZIP / Postal Code</label>
+                <input type="text" name="zipPostalCode" class="w-full rounded-lg bg-white border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="e.g. 201014" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">Country *</label>
+                <select name="country" required class="w-full rounded-lg bg-white border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium text-gray-700">
+                  {countries.map((c) => (
+                    <option value={c} selected={c === "India"}>{c}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Client Point of Contact Matrix Info -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+              <input type="text" name="clientName" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Contact Person Name" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
+              <input type="tel" name="phone" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Primary phone matrix contact" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address <span class="text-xs text-gray-400 font-normal">(If Any)</span></label>
+              <input type="email" name="email" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="corporate@domain.com" />
+            </div>
+          </div>
+
+          <!-- 5. Open Notes / Special Instructions Area -->
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Any other details you would like to mention</label>
+            <textarea name="otherDetails" rows="4" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue placeholder:text-gray-400" placeholder="Elaborate regarding audience details, specific preferred artist profiles, or theme constraints..."></textarea>
+          </div>
+
+          <!-- Server Response Interactive Triggers -->
+          <div id="booking-alert-success" class="hidden p-4 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
+            ✓ Success! Your corporate/event hosting query parameters have been uploaded via Apps Script execution pipeline to our spreadsheet ledger system.
+          </div>
+          <div id="booking-alert-error" class="hidden p-4 rounded-xl bg-rose-50 text-rose-800 text-xs font-semibold border border-rose-200">
+            ✕ Error communicating with processing script engine. Verify values and submission sync.
+          </div>
+
+          <!-- Action Submission Trigger Button -->
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              id="submit-booking-btn"
+              class="w-full bg-brand-blue hover:bg-brand-lightBlue text-white font-bold py-3.5 px-6 rounded-lg transition-all duration-300 shadow-md tracking-wider uppercase text-xs border border-brand-gold/40 flex items-center justify-center gap-2"
+            >
+              Submit Request
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Form Submission Scripts Pipeline Logic -->
+  <script is:inline>
+    // Replace logic target configuration url token with your standard Google Web App live execution id macro
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec";
+
+    const form = document.getElementById('app-script-booking-form');
+    const btn = document.getElementById('submit-booking-btn');
+    const successAlert = document.getElementById('booking-alert-success');
+    const errorAlert = document.getElementById('booking-alert-error');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      btn.disabled = true;
+      btn.innerHTML = `<svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending Booking Requests Parameters...`;
+      successAlert.classList.add('hidden');
+      errorAlert.classList.add('hidden');
+
+      const formData = new FormData(form);
+      const dataObj = {};
+      formData.forEach((value, key) => { dataObj[key] = value; });
+      
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataObj)
+        });
+        
+        successAlert.classList.remove('hidden');
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        errorAlert.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "Submit Request";
+      }
+    });
+  </script>
+</BaseLayout>

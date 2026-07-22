@@ -1,0 +1,38 @@
+{
+  "title": "Speaker & Workshop",
+  "slugId": "speakers-workshops",
+  "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80",
+  "description": "We offer a variety of engaging and informative sessions designed to inspire, educate, and offer solutions below to find the perfect workshop or guest talks for your next event.",
+  "subServices": [
+    {
+      "subServiceTitle": "Motivational Speaker Workshop",
+      "subServiceBrief": "Our motivational speaker workshops are designed to uplift and inspire audiences of all backgrounds. Whether you’re looking to boost morale, encourage personal development, or ignite a passion for success, our speakers have you covered.",
+      "deliveryMetrics": ["Engaging and dynamic presentations", "Customized content to suit your audience’s needs", "Practical tips and strategies for personal and professional growth"],
+      "focusBadges": ["Overcoming adversity", "Achieving work-life balance", "Leadership and teamwork", "Personal empowerment"]
+    },
+    {
+      "subServiceTitle": "Guest/Expert Talks",
+      "subServiceBrief": "Our guest talks feature experts from various fields who share their knowledge and experiences. These sessions are perfect for professional development, educational events, or any occasion where you want to provide valuable insights to your audience.",
+      "deliveryMetrics": ["Expert speakers from diverse industries", "Interactive Q&A sessions", "Real-world case studies and examples"],
+      "focusBadges": ["Innovations in technology", "Health and wellness", "Environmental sustainability", "Financial literacy"]
+    },
+    {
+      "subServiceTitle": "Corporate Training Workshop",
+      "subServiceBrief": "Enhance your team’s skills and productivity with our corporate training workshops. Our experienced trainers deliver tailored programs that address the specific needs of your organization.",
+      "deliveryMetrics": ["Customizable training modules", "Hands-on activities and practical exercises", "Focus on skill development and team building"],
+      "focusBadges": ["Effective communication", "Project management", "Time management", "Conflict resolution"]
+    },
+    {
+      "subServiceTitle": "Creative Workshop",
+      "subServiceBrief": "Unlock your creativity with our hands-on creative workshops. Perfect for team-building events, personal development, or simply having fun, these sessions encourage participants to think outside the box and explore new ideas.",
+      "deliveryMetrics": ["Interactive and engaging activities", "Expert guidance from creative professionals", "Opportunities for personal expression and innovation"],
+      "focusBadges": ["Art and design", "Creative writing", "Photography", "Music and performance"]
+    },
+    {
+      "subServiceTitle": "Wellness Workshop",
+      "subServiceBrief": "Promote health and well-being with our wellness workshops. These sessions provide valuable information and practical techniques to help participants improve their physical, mental, and emotional health.",
+      "deliveryMetrics": ["Expert advice from wellness professionals", "Interactive demonstrations and exercises", "Holistic approach to health and wellness"],
+      "focusBadges": ["Stress management", "Nutrition and healthy eating", "Yoga and meditation", "Mental health awareness"]
+    }
+  ]
+}

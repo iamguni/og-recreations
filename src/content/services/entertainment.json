@@ -1,0 +1,80 @@
+{
+  "title": "Entertainment Shows",
+  "slugId": "entertainment",
+  "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1920&q=80",
+  "description": "We offer a diverse range of shows designed to entertain, engage, and captivate audiences of all ages and interests. Explore our exciting lineup below to find the perfect entertainment for your next event.",
+  "subServices": [
+    {
+      "subServiceTitle": "Kavi Sammelans",
+      "subServiceTagline": "Intellectual Poetic Wit",
+      "subServiceBrief": "Experience the rich tradition of Indian poetry with our Kavi Sammelans. These gatherings feature celebrated poets who recite their compositions, blending emotion, rhythm, and literary brilliance.",
+      "energyVibe": "High / Engaging",
+      "targetAudience": "Family & Corporate",
+      "subServiceImage": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Renowned poets from across the country", "Diverse themes and styles", "Interactive sessions with the audience", "Celebration of linguistic and cultural heritage"]
+    },
+    {
+      "subServiceTitle": "Mushairas",
+      "subServiceTagline": "Soulful Urdu Symphony",
+      "subServiceBrief": "Immerse yourself in the world of Urdu poetry with our Mushairas. These poetic symposiums bring together accomplished poets who share their ghazals, nazms, and other poetic forms, creating an evening of lyrical beauty.",
+      "energyVibe": "Elegant / Deep",
+      "targetAudience": "Connoisseurs & Elite",
+      "subServiceImage": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Esteemed Urdu poets", "Engaging and heartfelt recitations", "Audience participation and response", "Fusion of classical and contemporary poetry"]
+    },
+    {
+      "subServiceTitle": "Comedy Shows",
+      "subServiceTagline": "Pure Laughter Therapy",
+      "subServiceBrief": "Laugh out loud with our hilarious comedy shows, featuring top comedians who bring their best jokes, stories, and improvisations to the stage. Perfect for lightening the mood and providing a fun-filled evening.",
+      "energyVibe": "Explosive / Fun",
+      "targetAudience": "All Demographics",
+      "subServiceImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Talented comedians with unique styles", "Variety of comedy genres (stand-up, sketch, improv)", "Audience interaction and engagement", "Uplifting and entertaining atmosphere"]
+    },
+    {
+      "subServiceTitle": "Music Concerts",
+      "subServiceTagline": "Live Sonic Euphoria",
+      "subServiceBrief": "Experience the thrill of live music with our music concerts. From classical to contemporary, we offer performances by talented musicians and bands across various genres to suit every musical taste.",
+      "energyVibe": "Stadium Electric",
+      "targetAudience": "Massive Crowds",
+      "subServiceImage": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Diverse musical genres (rock, pop, classical, jazz, etc.)", "Live performances by acclaimed artists", "High-quality sound and lighting", "Interactive and energetic environment"]
+    },
+    {
+      "subServiceTitle": "Stand-up Shows",
+      "subServiceTagline": "Sharp Modern Wit",
+      "subServiceBrief": "Enjoy an evening of sharp wit and clever humor with our stand-up shows. Featuring popular stand-up comedians, these performances offer fresh and funny takes on everyday life, current events, and more.",
+      "energyVibe": "Intimate / Lively",
+      "targetAudience": "Youth & Corporates",
+      "subServiceImage": "https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Renowned stand-up comedians", "Original and relatable humor", "Intimate and lively setting", "Opportunities for audience interaction"]
+    },
+    {
+      "subServiceTitle": "Dance Performances",
+      "subServiceTagline": "Visual & Graceful Narrative",
+      "subServiceBrief": "Be mesmerized by our stunning dance performances. Featuring classical, contemporary, and fusion dance forms, these shows showcase the grace, talent, and creativity of our dancers.",
+      "energyVibe": "Mesmerizing Visuals",
+      "targetAudience": "Cultural Galas",
+      "subServiceImage": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Wide range of dance styles", "Choreographed by professional dancers", "Visual and artistic excellence", "Captivating performances that tell a story"]
+    },
+    {
+      "subServiceTitle": "Theatrical Plays",
+      "subServiceTagline": "High Drama Productions",
+      "subServiceBrief": "Dive into the world of drama with our theatrical plays. Our productions range from classic works to modern masterpieces, offering powerful performances that leave a lasting impression.",
+      "energyVibe": "Immersive Narrative",
+      "targetAudience": "Drama Enthusiasts",
+      "subServiceImage": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Talented actors and directors", "Engaging and thought-provoking scripts", "High-quality production values", "Variety of genres (drama, comedy, tragedy, etc.)"]
+    },
+    {
+      "subServiceTitle": "Magic Shows",
+      "subServiceTagline": "Mind-Boggling Illusions",
+      "subServiceBrief": "Amaze your audience with our captivating magic shows. Our skilled magicians perform mind-boggling tricks and illusions that will leave everyone spellbound and questioning reality.",
+      "energyVibe": "Spellbinding / Curious",
+      "targetAudience": "Family & Kids",
+      "subServiceImage": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80",
+      "deliveryMetrics": ["Experienced magicians and illusionists", "Interactive and engaging acts", "Family-friendly entertainment", "Unforgettable magical moments"]
+    }
+  ]
+}

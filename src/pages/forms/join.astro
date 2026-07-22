@@ -1,0 +1,320 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Join Our Elite Roster - OG Recreations">
+  <section class="py-12 bg-brand-bgLight">
+    <!-- Increased target width container matrix to max-w-5xl -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+        <div class="bg-brand-blue text-white p-8 border-b-4 border-brand-gold text-center">
+          <h1 class="font-serif text-3xl font-bold tracking-wide">Join Our Elite Roster</h1>
+          <p class="text-brand-gold text-xs font-medium tracking-widest uppercase mt-2">
+            Submit your profile to align with premium cultural & corporate gigs
+          </p>
+        </div>
+
+        <form id="app-script-form" class="p-8 space-y-6" enctype="multipart/form-data">
+          <input type="hidden" name="formType" value="ARTIST_ROSTER_APPLICATION" />
+          
+          <!-- 1. Role Category Selector Matrix -->
+          <div>
+            <label class="block text-sm font-bold text-brand-blue mb-3">Applying for *</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {["Poet", "Stand-up comedian", "Subject Expert/Motivational Speaker", "Anchor"].map((role) => (
+                <label class="flex items-center gap-3 p-3.5 border border-gray-200 rounded-xl cursor-pointer hover:bg-brand-bgLight hover:border-brand-gold/60 transition bg-gray-50/50">
+                  <input type="radio" name="applyingFor" value={role} required class="w-4 h-4 text-brand-blue focus:ring-brand-blue border-gray-300" />
+                  <span class="text-xs font-semibold text-gray-700">{role}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- 2. Core Demographic Parameters Section -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+              <input type="text" name="fullName" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Your full structural name" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+              <input type="email" name="email" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="artist@domain.com" />
+            </div>
+          </div>
+
+          <!-- 3. Contact Matrix Block -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
+              <div class="relative flex rounded-lg shadow-xs">
+                <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-xs font-bold font-mono">
+                  🇮🇳 +91
+                </span>
+                <input type="tel" name="phone" required pattern="[0-9]{10}" class="w-full rounded-r-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="10-digit primary mobile" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">WhatsApp No. *</label>
+              <div class="relative flex rounded-lg shadow-xs">
+                <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-xs font-bold font-mono">
+                  🇮🇳 +91
+                </span>
+                <input type="tel" name="whatsappNo" required pattern="[0-9]{10}" class="w-full rounded-r-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="10-digit active WhatsApp" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Age, Gender & Geographic Coordinates Matrix -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Age *</label>
+              <input type="number" name="age" min="18" max="100" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="e.g. 25" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Gender *</label>
+              <select name="gender" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue bg-white font-semibold text-gray-700">
+                <option value="" disabled selected>Please select an option</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">City *</label>
+              <input type="text" name="city" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Base city location" />
+            </div>
+          </div>
+
+          <!-- 5. Dynamic Preferred Language Roster Area -->
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+            <label class="block text-sm font-bold text-brand-blue mb-3">Preferred Language *</label>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+              <label class="flex items-center gap-2.5 cursor-pointer">
+                <input type="checkbox" name="languages" value="Hindi" class="w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300" />
+                <span class="text-xs font-semibold text-gray-700">Hindi</span>
+              </label>
+              <label class="flex items-center gap-2.5 cursor-pointer">
+                <input type="checkbox" name="languages" value="English" class="w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300" />
+                <span class="text-xs font-semibold text-gray-700">English</span>
+              </label>
+              <div class="flex items-center gap-2 w-full">
+                <label class="flex items-center gap-2.5 shrink-0 cursor-pointer">
+                  <input type="checkbox" id="lang-other-check" name="languages" value="Other" class="w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300" />
+                  <span class="text-xs font-semibold text-gray-700">Other:</span>
+                </label>
+                <input type="text" id="lang-other-input" name="otherLanguage" class="w-full rounded-md border border-gray-300 px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Specify language(s)" disabled />
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Dynamic Remuneration & Dynamic Specialization Wrapper Field -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div id="specialization-wrapper" class="hidden">
+              <label id="specialization-label" class="block text-sm font-semibold text-gray-700 mb-2">Specialization</label>
+              <input type="text" name="specialization" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Specify tracking competencies" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Expected Remuneration per Show *</label>
+              <input type="text" name="expectedRemuneration" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Commercial fee expectation (INR)" />
+            </div>
+          </div>
+
+          <!-- 7. Dynamic Type of Program Matrix Roster Checkboxes -->
+          <div id="program-types-wrapper">
+            <label class="block text-sm font-bold text-brand-blue mb-2">Type of program you would like to perform <span class="text-xs font-normal text-gray-500">(Tick as many applicable)</span></label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-3">
+              {["Corporate", "Academic", "Family Program", "Get Together"].map((prog) => (
+                <label class="flex items-center gap-2.5 p-3 border border-gray-200 rounded-xl cursor-pointer bg-gray-50/30 hover:bg-white transition">
+                  <input type="checkbox" name="programTypes" value={prog} class="w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300" />
+                  <span class="text-xs font-semibold text-gray-700">{prog}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- 8. Media Deliverables Uplink Grid Block & Dynamic Resume Node -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Your Recent Photo *</label>
+              <div class="mt-1 flex justify-center px-6 pt-4 pb-4 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50/50">
+                <div class="space-y-1 text-center">
+                  <div class="flex text-xs text-gray-600 justify-center">
+                    <label class="relative cursor-pointer bg-white rounded-md font-bold text-brand-blue hover:text-brand-gold focus-within:outline-none">
+                      <span>Choose File</span>
+                      <input id="file-upload" name="recentPhoto" type="file" accept="image/*" required class="sr-only" />
+                    </label>
+                  </div>
+                  <p id="file-name-text" class="text-[10px] text-gray-400 italic">No file chosen</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Dynamic Resume Upload Container Slot -->
+            <div id="resume-wrapper" class="hidden">
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Your Professional Resume *</label>
+              <div class="mt-1 flex justify-center px-6 pt-4 pb-4 border-2 border-brand-blue/30 border-dashed rounded-lg bg-gray-50/50">
+                <div class="space-y-1 text-center">
+                  <div class="flex text-xs text-gray-600 justify-center">
+                    <label class="relative cursor-pointer bg-white rounded-md font-bold text-brand-blue hover:text-brand-gold focus-within:outline-none">
+                      <span>Upload Resume</span>
+                      <input id="resume-upload" name="resumeFile" type="file" accept=".pdf,.doc,.docx" class="sr-only" />
+                    </label>
+                  </div>
+                  <p id="resume-name-text" class="text-[10px] text-gray-400 italic">No file chosen</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. Portfolios & Discovery Channels -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Link of performance video <span class="text-xs text-gray-400 font-normal">(if any)</span></label>
+              <input type="url" name="performanceVideoLink" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="YouTube or Google Drive URL" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Links of social media</label>
+              <input type="text" name="socialMediaLinks" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="Instagram, Facebook profiles" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">How did you come to know about us? *</label>
+            <select name="discoveryChannel" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue bg-white font-semibold text-gray-700">
+              <option value="" disabled selected>Please select an option</option>
+              <option value="Friends">Friends</option>
+              <option value="Instagram">Instagram</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Ads">Ads</option>
+              <option value="Facebook">Facebook</option>
+              <option value="YouTube">YouTube</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div id="form-alert-success" class="hidden p-4 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
+            ✓ Success! Your comprehensive professional profile has been written directly to our Google Sheets configuration database using Apps Script.
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" id="submit-btn" class="w-full bg-brand-blue hover:bg-brand-lightBlue text-white font-bold py-3.5 px-6 rounded-lg transition-all duration-300 shadow-md tracking-wider uppercase text-xs border border-brand-gold/40">
+              Submit Application
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <script is:inline>
+    // File inputs visual display binders
+    const photoInput = document.getElementById('file-upload');
+    const photoText = document.getElementById('file-name-text');
+    photoInput?.addEventListener('change', (e) => { photoText.innerText = e.target.files[0]?.name || "No file chosen"; });
+
+    const resumeInput = document.getElementById('resume-upload');
+    const resumeText = document.getElementById('resume-name-text');
+    resumeInput?.addEventListener('change', (e) => { resumeText.innerText = e.target.files[0]?.name || "No file chosen"; });
+
+    // Conditional Language Input Triggers
+    const otherLangCheck = document.getElementById('lang-other-check');
+    const otherLangInput = document.getElementById('lang-other-input');
+    otherLangCheck?.addEventListener('change', (e) => {
+      otherLangInput.disabled = !e.target.checked;
+      if (!e.target.checked) otherLangInput.value = "";
+    });
+
+    // Dynamic Conditional Layout State Engine
+    const roleRadios = document.querySelectorAll('input[name="applyingFor"]');
+    const specWrapper = document.getElementById('specialization-wrapper');
+    const specLabel = document.getElementById('specialization-label');
+    const programWrapper = document.getElementById('program-types-wrapper');
+    const resumeWrapper = document.getElementById('resume-wrapper');
+    const realResumeUpload = document.getElementById('resume-upload');
+
+    function updateFormLayout(roleValue) {
+      // Logic targets for Specialization Label
+      if (roleValue === "Subject Expert/Motivational Speaker") {
+        specWrapper.classList.remove('hidden');
+        specLabel.innerText = "Specialization (If Any)";
+      } else if (roleValue === "Poet") {
+        specWrapper.classList.remove('hidden');
+        specLabel.innerText = "Specialization (Vidha)";
+      } else {
+        specWrapper.classList.add('hidden');
+      }
+
+      // Logic targets for Program Types Checklist Visibility
+      if (roleValue === "Subject Expert/Motivational Speaker") {
+        programWrapper.classList.add('hidden');
+      } else {
+        programWrapper.classList.remove('hidden');
+      }
+
+      // Logic targets for Additional Resume Field Validation Cues
+      if (roleValue === "Subject Expert/Motivational Speaker" || roleValue === "Anchor") {
+        resumeWrapper.classList.remove('hidden');
+        realResumeUpload.required = true;
+      } else {
+        resumeWrapper.classList.add('hidden');
+        realResumeUpload.required = false;
+        realResumeUpload.value = "";
+        resumeText.innerText = "No file chosen";
+      }
+    }
+
+    roleRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => updateFormLayout(e.target.value));
+    });
+
+    // Form Submission Pipeline Configuration
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec";
+    const form = document.getElementById('app-script-form');
+    const btn = document.getElementById('submit-btn');
+    const successAlert = document.getElementById('form-alert-success');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.innerText = "Transmitting Profile...";
+
+      const formData = new FormData(form);
+      const dataObj = {};
+      
+      const programs = [];
+      const languages = [];
+      
+      formData.forEach((value, key) => {
+        if (key === 'programTypes') { programs.push(value); }
+        else if (key === 'languages') { languages.push(value); }
+        else if (key === 'recentPhoto' || key === 'resumeFile') { dataObj[key] = value.name || "attached_file"; }
+        else { dataObj[key] = value; }
+      });
+
+      dataObj['programTypes'] = programs.join(', ');
+      dataObj['languages'] = languages.join(', ');
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataObj)
+        });
+        successAlert.classList.remove('hidden');
+        form.reset();
+        specWrapper.classList.add('hidden');
+        programWrapper.classList.remove('hidden');
+        resumeWrapper.classList.add('hidden');
+        photoText.innerText = "No file chosen";
+      } catch (err) {
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "Submit Application";
+      }
+    });
+  </script>
+</BaseLayout>
