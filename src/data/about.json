@@ -1,10 +1,11 @@
 {
-  "videoMode": "URL",
+  "videoMode": "Upload",
   "videoUrl": "https://youtu.be/GCpRiwViTH4?si=Pv3_8Hnu_LTV-yZS",
+  "videoFile": "/og-recreations/images/uploads/og-original.mp4",
   "visionTitle": "Our Vision",
   "visionImage": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80",
-  "visionText": "To build a worldwide reputable ecosystem where pure literary culture and high-fidelity recreation events seamlessly merge to relieve psychological stress.",
+  "visionText": "Our vision is to be a beacon of poetic expression and cultural enlightenment, celebrated not only across India but around the world. We aspire to transform Kavi Sammelan from a traditional literary gathering into a global platform that bridges cultural divides and fosters a universal appreciation for the beauty and depth of Indian poetry.",
   "missionTitle": "Our Mission",
   "missionImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80",
-  "missionText": "To curate tailored cultural setups with precision execution, onboarding only top-tier literary giants and performing artists."
+  "missionText": "At OG Recreations, our mission is to uphold and celebrate the rich traditions of Indian poetry through the organization of premier Kavi Sammelan events. We are dedicated to cultivating a deeper appreciation of poetry across generations and demographics, fostering an environment where the art of verse can flourish."
 }
