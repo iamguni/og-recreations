@@ -6,43 +6,93 @@
   "subServices": [
     {
       "subServiceTitle": "Corporate Events",
+      "subServiceTagline": "",
       "subServiceBrief": "Ensure your corporate event runs smoothly with our expert anchoring services. Our professional anchors are adept at managing business conferences, product launches, award ceremonies, and more.",
-      "deliveryMetrics": ["Professional and polished presentation", "Effective time management and agenda coordination", "Engaging interaction with the audience", "Seamless transitions between segments"]
+      "energyVibe": "",
+      "targetAudience": "",
+      "subServiceImage": "https://picsum.photos/id/56/1920/1280.webp",
+      "deliveryMetrics": [
+        "Professional and polished presentation",
+        "Effective time management and agenda coordination",
+        "Engaging interaction with the audience",
+        "Seamless transitions between segments"
+      ]
     },
     {
       "subServiceTitle": "Wedding and Receptions",
+      "subServiceTagline": "",
       "subServiceBrief": "Add a touch of elegance and fun to your wedding or reception with our skilled anchors. They create a joyous atmosphere, ensuring all events are carried out smoothly and all guests are entertained.",
-      "deliveryMetrics": ["Warm and personable hosting style", "Coordination of wedding ceremonies and traditions", "Engaging audience with games and activities", "Smooth flow of events and timely management"]
+      "energyVibe": "",
+      "targetAudience": "",
+      "deliveryMetrics": [
+        "Warm and personable hosting style",
+        "Coordination of wedding ceremonies and traditions",
+        "Engaging audience with games and activities",
+        "Smooth flow of events and timely management"
+      ]
     },
     {
       "subServiceTitle": "Cultural Events",
+      "subServiceTagline": "",
       "subServiceBrief": "Celebrate your cultural heritage with our dynamic anchoring services for cultural events. Our anchors are well-versed in various cultural contexts and can bring authenticity and flair to your celebration.",
-      "deliveryMetrics": ["Knowledgeable about cultural traditions and customs", "Fluent in multiple languages as needed", "Interactive and lively presentation", "Handling of traditional ceremonies and performances"]
+      "energyVibe": "",
+      "targetAudience": "",
+      "deliveryMetrics": [
+        "Knowledgeable about cultural traditions and customs",
+        "Fluent in multiple languages as needed",
+        "Interactive and lively presentation",
+        "Handling of traditional ceremonies and performances"
+      ]
     },
     {
       "subServiceTitle": "Music and Dance Shows",
       "subServiceBrief": "Keep your music and dance shows energetic and well-coordinated with our professional anchors. They ensure a vibrant atmosphere and maintain audience engagement throughout the event.",
-      "deliveryMetrics": ["Enthusiastic and lively presentation style", "Coordination with performers and event schedule", "Audience interaction and engagement", "Smooth transitions between performances"]
+      "deliveryMetrics": [
+        "Enthusiastic and lively presentation style",
+        "Coordination with performers and event schedule",
+        "Audience interaction and engagement",
+        "Smooth transitions between performances"
+      ]
     },
     {
       "subServiceTitle": "Fashion Shows",
       "subServiceBrief": "Elevate your fashion show with our sophisticated anchoring services. Our anchors bring style and poise, ensuring the event flows flawlessly and highlights the creativity of designers.",
-      "deliveryMetrics": ["Stylish and confident presentation", "Coordination with models and designers", "Descriptive commentary on fashion pieces", "Engaging the audience with fashion insights"]
+      "deliveryMetrics": [
+        "Stylish and confident presentation",
+        "Coordination with models and designers",
+        "Descriptive commentary on fashion pieces",
+        "Engaging the audience with fashion insights"
+      ]
     },
     {
       "subServiceTitle": "Sports Events",
       "subServiceBrief": "Make your sports event exciting and well-organized with our experienced sports anchors. They provide lively commentary, keep the audience engaged, and ensure the event runs on time.",
-      "deliveryMetrics": ["Energetic and enthusiastic hosting", "Knowledgeable sports commentary", "Interaction with athletes and audience", "Time management and coordination of events"]
+      "deliveryMetrics": [
+        "Energetic and enthusiastic hosting",
+        "Knowledgeable sports commentary",
+        "Interaction with athletes and audience",
+        "Time management and coordination of events"
+      ]
     },
     {
       "subServiceTitle": "Charity and Fundraising Events",
       "subServiceBrief": "Boost the success of your charity or fundraising event with our compassionate and persuasive anchors. They help create a warm atmosphere, encourage donations, and highlight the cause effectively.",
-      "deliveryMetrics": ["Empathetic and persuasive presentation", "Encouragement of audience participation and donations", "Highlighting the cause and its importance", "Coordination of activities and speeches"]
+      "deliveryMetrics": [
+        "Empathetic and persuasive presentation",
+        "Encouragement of audience participation and donations",
+        "Highlighting the cause and its importance",
+        "Coordination of activities and speeches"
+      ]
     },
     {
       "subServiceTitle": "Conferences and Seminars",
       "subServiceBrief": "Ensure your conference or seminar is professional and engaging with our skilled anchors. They effectively manage the flow of the event, introduce speakers, and facilitate discussions.",
-      "deliveryMetrics": ["Professional and articulate presentation", "Efficient time management and coordination", "Introduction of speakers and facilitation of Q&A sessions", "Engaging and interactive approach"]
+      "deliveryMetrics": [
+        "Professional and articulate presentation",
+        "Efficient time management and coordination",
+        "Introduction of speakers and facilitation of Q&A sessions",
+        "Engaging and interactive approach"
+      ]
     }
   ]
 }
