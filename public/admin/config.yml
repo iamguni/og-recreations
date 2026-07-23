@@ -186,3 +186,28 @@ collections:
     fields:
       - { label: "Snapshot Performance Event Title", name: "title", widget: "string" }
       - { label: "High-Res Event Image File", name: "image", widget: "image" }
+
+# 🛠️ Restructured Root Collection: Turns every poet row into an independent file
+  - name: "independent_poets_hub"
+    label: "Renowned Poets Registry"
+    icon: "history_edu"
+    folder: "src/content/poets" # 👈 Saves each entry dynamically into this folder
+    create: true
+    format: "json"
+    slug: "{{title}}"
+    
+    # 🔍 Sveltia Global Filter Panel UI Setup
+    view_filters:
+      - label: "Has Pen Name"
+        field: "penName"
+        pattern: ".+"
+    view_groups:
+      - label: "Group by Genre Specialty"
+        field: "specialty"
+        
+    fields:
+      - { label: "Poet Full Name", name: "title", widget: "string" }
+      - { label: "Poetic Pseudonym / Takhallis", name: "penName", widget: "string", required: false }
+      - { label: "Poetic Genre Specialty", name: "specialty", widget: "string" }
+      - { label: "Poet Profile Portrait Image", name: "image", widget: "image", required: false }
+      - { label: "Biographical Summary", name: "bio", widget: "text" }
