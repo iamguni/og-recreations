@@ -12,12 +12,14 @@ local_backend: true
 collections:
   - name: "global_settings"
     label: "Global Settings"
+    icon: "settings"
     delete: false
     editor:
       preview: false
     files:
       - name: "communication_desk"
         label: "Contact Information"
+        icon: "call"
         file: "src/data/communication.json"
         fields:
           - { label: "Direct Call Number", name: "callNumber", widget: "string" }
@@ -26,6 +28,7 @@ collections:
           
       - name: "social_media"
         label: "Social Media Matrix"
+        icon: "share"
         file: "src/data/socials.json"
         format: "json"
         fields:
@@ -43,6 +46,7 @@ collections:
       # 🛠️ SAFELY ADDED HERE INSIDE FILES MATRIX
       - name: "footer_architecture"
         label: "Footer Configuration"
+        icon: "page_footer"
         file: "src/data/footer.json"
         fields:
           - { label: "Copyright Sub-text Notice", name: "copyrightNotice", widget: "string" }
@@ -64,6 +68,7 @@ collections:
         # 👇 THIS SPECIFIC BLOCK ADDS THE OPTIONS TO YOUR CMS PANEL
       - name: "site_branding"
         label: "Header Configuration"
+        icon: "page_header"
         file: "src/data/branding.json"
         fields:
           - { label: "Site Logo Graphic Asset (Hides text if uploaded)", name: "logo", widget: "image", required: false }
@@ -74,6 +79,7 @@ collections:
 # 2. ENTRY FOLDER COLLECTION: Hero Sliders
   - name: "hero_sliders"
     label: "Sliders Configuration"
+    icon: "transition_slide"
     folder: "src/content/sliders"
     create: true
     slug: "{{title}}"
@@ -89,6 +95,7 @@ collections:
   # 3. ENTRY FOLDER COLLECTION: Chronicles Horizontal Timeline
   - name: "chronicles"
     label: "Chronicles of Our Past"
+    icon: "history_edu"
     folder: "src/content/chronicles"
     create: true
     slug: "{{year}}-{{month}}-{{title}}"
@@ -103,6 +110,7 @@ collections:
   # 4. ENTRY FOLDER COLLECTION: Institutional Partners
   - name: "institutional_partners"
     label: "Partners Grid"
+    icon: "groups"
     folder: "src/content/partners"
     create: true
     slug: "{{title}}"
@@ -115,6 +123,7 @@ collections:
 # 5. ENTRY FOLDER COLLECTION: Synchronized 3-Pillar Services
   - name: "synchronized_services"
     label: "Services Configuration"
+    icon: "design_services"
     folder: "src/content/services"
     create: true
     slug: "{{slugId}}"
@@ -148,10 +157,12 @@ collections:
   # 6. FILE-BASED SETTINGS COLLECTION: About Us Configuration Page
   - name: "about_us_page"
     label: "About Us Content"
+    icon: "info"
     delete: false
     files:
       - name: "about_content"
         label: "About Us Narrative Blocks"
+        icon: "info_outline"
         file: "src/data/about.json"
         fields:
           - { label: "Dynamic Video Display Mode", name: "videoMode", widget: "select", options: ["URL", "Upload"] }
@@ -167,6 +178,7 @@ collections:
   # 7. ENTRY FOLDER COLLECTION: Event Photo Gallery Room
   - name: "photo_gallery"
     label: "Photo Gallery Room"
+    icon: "photo_library"
     folder: "src/content/gallery"
     create: true
     slug: "{{title}}"
