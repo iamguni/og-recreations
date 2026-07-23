@@ -36,6 +36,18 @@
         {
           "linkLabel": "Reknowned Poets",
           "linkUrl": "/og-recreations/poets"
+        },
+        {
+          "linkLabel": "Privacy Policy",
+          "linkUrl": "/og-recreations/privacy"
+        },
+        {
+          "linkLabel": "Terms & Conditions",
+          "linkUrl": "/og-recreations/terms"
+        },
+        {
+          "linkLabel": "FAQ",
+          "linkUrl": "/og-recreations/faq"
         }
       ]
     },

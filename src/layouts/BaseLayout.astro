@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ScrollToTop from '../components/ScrollToTop.astro';
 import FloatingBookButton from '../components/FloatingBookButton.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css'; // Adjust path based on your design system
 
 const { title } = Astro.props;
@@ -32,5 +33,6 @@ const computedFaviconSrc = rawFavicon
     <Footer />
     <ScrollToTop/>
     <FloatingBookButton/>
+    <CookieConsent/>
   </body>
 </html>

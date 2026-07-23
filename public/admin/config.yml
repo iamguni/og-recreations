@@ -164,7 +164,7 @@ collections:
     files:
       - name: "about_content"
         label: "About Us Narrative Blocks"
-        icon: "info_outline"
+        icon: "page_info"
         file: "src/data/about.json"
         fields:
           - { label: "Dynamic Video Display Mode", name: "videoMode", widget: "select", options: ["URL", "Upload"] }

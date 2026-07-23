@@ -1,0 +1,81 @@
+---
+import communicationData from '../data/communication.json';
+---
+
+<div 
+  id="cookie-consent-banner" 
+  class="fixed bottom-6 left-6 right-6 md:left-auto md:max-w-md z-[60] bg-brand-blue border border-brand-gold/30 text-white p-6 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] transform translate-y-20 opacity-0 invisible transition-all duration-500 pointer-events-none"
+>
+  <div class="flex flex-col space-y-4">
+    <!-- Header Block -->
+    <div class="flex items-center gap-2.5">
+      <div class="p-2 bg-brand-gold/10 rounded-xl text-brand-gold shrink-0">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+      </div>
+      <div>
+        <h4 class="font-serif text-base font-bold text-white tracking-wide">Cookie Preferences</h4>
+        <span class="block text-[10px] text-brand-gold uppercase tracking-widest font-semibold font-mono">Privacy Control</span>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <p class="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed">
+      We use cookies to optimize your experience, deliver premium event streaming, and analyze web traffic. By clicking "Accept", you consent to our use of cookies in accordance with our 
+      <a href="/og-recreations/privacy" class="text-brand-gold hover:underline font-bold">Privacy Policy</a>.
+    </p>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center justify-end gap-3 pt-2 text-xs font-bold">
+      <button 
+        id="decline-cookies-btn" 
+        class="px-4 py-2.5 text-gray-400 hover:text-white transition duration-200"
+      >
+        Decline
+      </button>
+      <button 
+        id="accept-cookies-btn" 
+        class="px-5 py-2.5 bg-brand-gold hover:bg-white text-brand-blue rounded-xl shadow-[0_4px_10px_rgba(212,175,55,0.2)] transition duration-300"
+      >
+        Accept All
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-consent-banner');
+  const acceptBtn = document.getElementById('accept-cookies-btn');
+  const declineBtn = document.getElementById('decline-cookies-btn');
+
+  if (banner && acceptBtn && declineBtn) {
+    // Check if user has already made a choice previously
+    const cookieChoice = localStorage.getItem('og-cookie-consent');
+
+    if (!cookieChoice) {
+      // Trigger smooth pop-up entrance slightly after page launch
+      setTimeout(() => {
+        banner.classList.remove('translate-y-20', 'opacity-0', 'invisible', 'pointer-events-none');
+        banner.classList.add('translate-y-0', 'opacity-100');
+      }, 1500);
+    }
+
+    // Accept Action
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('og-cookie-consent', 'accepted');
+      dismissBanner();
+    });
+
+    // Decline Action
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem('og-cookie-consent', 'declined');
+      dismissBanner();
+    });
+
+    function dismissBanner() {
+      banner.classList.remove('translate-y-0', 'opacity-100');
+      banner.classList.add('translate-y-20', 'opacity-0', 'invisible', 'pointer-events-none');
+    }
+  }
+</script>
