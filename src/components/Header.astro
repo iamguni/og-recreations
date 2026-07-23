@@ -18,8 +18,23 @@ if (hasLogo) {
 const callLink = `tel:${communicationData.callNumber ? communicationData.callNumber.replace(/\s+/g, '') : ''}`;
 const whatsappLink = `https://wa.me/${communicationData.whatsappNumber ? communicationData.whatsappNumber.replace(/\s+/g, '') : ''}?text=${encodeURIComponent(communicationData.whatsappText || '')}`;
 
-// Cleanly fetch structural array of social channels configured in CMS matrix
 const activeSocials = socialsData?.channels || [];
+
+// 🎯 Fetch the current URL path to calculate active states dynamically
+const pathname = Astro.url.pathname;
+
+// Helper function to return active styling classes
+const getLinkClass = (targetPath: string, isSpecial: boolean = false) => {
+  // Normalize paths to check matching endpoints cleanly
+  const isActive = pathname === targetPath || pathname === `${targetPath}/`;
+  
+  if (isActive) {
+    return "text-brand-gold font-bold transition duration-200";
+  }
+  return isSpecial 
+    ? "text-white/90 hover:text-brand-gold transition duration-200 font-semibold" 
+    : "text-white hover:text-brand-gold transition duration-200";
+};
 ---
 <header class="sticky top-0 z-50 bg-brand-blue border-b border-brand-gold/30 shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -45,10 +60,11 @@ const activeSocials = socialsData?.channels || [];
       )}
     </a>
 
-    <!-- Desktop Menu Navigation Links -->
+    <!-- Desktop Menu Navigation Links (Now Dynamically Highlights Active Routing) -->
     <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium tracking-wide">
-      <a href="/og-recreations/" class="text-white hover:text-brand-gold transition duration-200">Home</a>
-      <a href="/og-recreations/about" class="text-white hover:text-brand-gold transition duration-200">About Us</a>
+      <a href="/og-recreations/" class={getLinkClass("/og-recreations")}>Home</a>
+      <a href="/og-recreations/about" class={getLinkClass("/og-recreations/about")}>About Us</a>
+      
       
       <!-- Dropdown -->
       <div class="relative group">
@@ -65,15 +81,15 @@ const activeSocials = socialsData?.channels || [];
         </div>
       </div>
 
-      <a href="/og-recreations/gallery" class="text-white hover:text-brand-gold transition duration-200">Gallery</a>
-      <a href="/og-recreations/forms/book" class="text-brand-gold hover:text-white transition duration-200 font-semibold">Book Us</a>
-      <a href="/og-recreations/forms/join" class="text-white hover:text-brand-gold transition duration-200">Join Us</a>
-      <a href="/og-recreations/forms/contact" class="text-white hover:text-brand-gold transition duration-200">Contact Us</a>
+      <a href="/og-recreations/gallery" class={getLinkClass("/og-recreations/gallery")}>Gallery</a>
+      <!-- 🛠️ FIXED: Book Us now evaluates active logic dynamically instead of forcing gold hardcoded -->
+      <a href="/og-recreations/forms/book" class={getLinkClass("/og-recreations/forms/book", true)}>Book Us</a>
+      <a href="/og-recreations/forms/join" class={getLinkClass("/og-recreations/forms/join")}>Join Us</a>
+      <a href="/og-recreations/forms/contact" class={getLinkClass("/og-recreations/forms/contact")}>Contact Us</a>
     </nav>
 
     <!-- Desktop Icons & Actions Hub -->
     <div class="hidden lg:flex items-center space-x-4">
-      <!-- Dynamic Vector Icons Generator Base Loop -->
       <div class="flex items-center space-x-2.5 mr-2">
         {activeSocials.map((social) => (
           <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-brand-gold transition-colors duration-200" title={`Follow our ${social.platform}`}>
@@ -98,11 +114,12 @@ const activeSocials = socialsData?.channels || [];
     </button>
   </div>
 
-  <!-- Mobile Drawer Menu (Hidden Completely by Default via Toggle Utilities) -->
+  <!-- Mobile Drawer Menu -->
   <div id="mobile-navigation-drawer" class="hidden xl:hidden bg-[#07172c] border-t border-brand-gold/20 shadow-2xl transition-all duration-300">
     <div class="px-4 pt-4 pb-6 space-y-3 font-medium tracking-wide text-sm">
-      <a href="/og-recreations/" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">Home</a>
-      <a href="/og-recreations/about" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">About Us</a>
+      <a href="/og-recreations/" class={Astro.url.pathname === "/og-recreations/" ? "block text-brand-gold font-bold py-2 border-b border-white/5" : "block text-white hover:text-brand-gold py-2 border-b border-white/5"}>Home</a>
+      <a href="/og-recreations/about" class={getLinkClass("/og-recreations/about") + " block py-2 border-b border-white/5"}>About Us</a>
+      <a href="/og-recreations/poets" class={getLinkClass("/og-recreations/poets") + " block py-2 border-b border-white/5"}>Renowned Poets</a>
       
       <div class="py-2 border-b border-white/5">
         <span class="block text-brand-gold font-bold text-xs uppercase tracking-widest mb-2">Our Services Roster</span>
@@ -115,10 +132,10 @@ const activeSocials = socialsData?.channels || [];
         </div>
       </div>
 
-      <a href="/og-recreations/gallery" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">Gallery</a>
-      <a href="/og-recreations/forms/book" class="block text-brand-gold font-bold py-2 border-b border-white/5">Book Performance</a>
-      <a href="/og-recreations/forms/join" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">Join Us</a>
-      <a href="/og-recreations/forms/contact" class="block text-white hover:text-brand-gold py-2">Contact Us</a>
+      <a href="/og-recreations/gallery" class={getLinkClass("/og-recreations/gallery") + " block py-2 border-b border-white/5"}>Gallery</a>
+      <a href="/og-recreations/forms/book" class={getLinkClass("/og-recreations/forms/book", true) + " block py-2 border-b border-white/5"}>Book Us</a>
+      <a href="/og-recreations/forms/join" class={getLinkClass("/og-recreations/forms/join") + " block py-2 border-b border-white/5"}>Join Us</a>
+      <a href="/og-recreations/forms/contact" class={getLinkClass("/og-recreations/forms/contact") + " block py-2"}>Contact Us</a>
 
       <!-- Mobile Social Icons Line & Fast Action Channels Row -->
       <div class="pt-4 border-t border-white/10 flex flex-col space-y-4">
@@ -144,7 +161,6 @@ const activeSocials = socialsData?.channels || [];
 </header>
 
 <script>
-  // Robust vanilla script execution for handling responsive actions
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const drawer = document.getElementById('mobile-navigation-drawer');
   const burgerIcon = document.getElementById('menu-icon-hamburger');
