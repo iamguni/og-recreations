@@ -4,53 +4,40 @@ import socialsData from '../data/socials.json';
 import brandingData from '../data/branding.json';
 import { getCollection } from 'astro:content';
 
-// Query dynamic services to populate navigation sub-menus automatically
 const cmsServices = await getCollection('services');
 
-// Check if logo exists and is not an empty string
 const hasLogo = brandingData && brandingData.logo && brandingData.logo.trim() !== "";
-
-// Safely generate the correct path link for the uploaded logo asset
 let computedLogoSrc = "";
 if (hasLogo) {
   const logoPath = brandingData.logo;
-  // If the path is already a full URL or already includes the subdirectory path base
-  if (logoPath.startsWith('http') || logoPath.startsWith('/og-recreations')) {
-    computedLogoSrc = logoPath;
-  } else {
-    // Standardize leading slash matching constraints
-    computedLogoSrc = `/og-recreations${logoPath.startsWith('/') ? '' : '/'}${logoPath}`;
-  }
+  computedLogoSrc = logoPath.startsWith('http') || logoPath.startsWith('/og-recreations') 
+    ? logoPath 
+    : `/og-recreations${logoPath.startsWith('/') ? '' : '/'}${logoPath}`;
 }
 
-// Parse communication links dynamically
 const callLink = `tel:${communicationData.callNumber ? communicationData.callNumber.replace(/\s+/g, '') : ''}`;
 const whatsappLink = `https://wa.me/${communicationData.whatsappNumber ? communicationData.whatsappNumber.replace(/\s+/g, '') : ''}?text=${encodeURIComponent(communicationData.whatsappText || '')}`;
+
+// Cleanly fetch structural array of social channels configured in CMS matrix
+const activeSocials = socialsData?.channels || [];
 ---
 <header class="sticky top-0 z-50 bg-brand-blue border-b border-brand-gold/30 shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
     
-    <!-- Dynamic Site Branding Logo / Text Block Node -->
-    <a href="/og-recreations/" class="flex items-center space-x-2 group">
+    <!-- Dynamic Branding Zone -->
+    <a href="/og-recreations/" class="flex items-center space-x-2 group shrink-0">
       {hasLogo ? (
-        /* Condition A: Logo is present -> Render ONLY the logo graphic element */
-        <img 
-          src={computedLogoSrc} 
-          alt={brandingData.title || "OG Recreations Logo"} 
-          class="h-14 w-auto object-contain max-w-[220px] block"
-          loading="eager"
-        />
+        <img src={computedLogoSrc} alt={brandingData.title || "OG Recreations"} class="h-14 w-auto object-contain max-w-[200px] block" loading="eager" />
       ) : (
-        /* Condition B: Logo is absent -> Render Textual Fallbacks */
         <>
-          <div class="w-10 h-10 rounded-full border-2 border-brand-gold bg-gradient-to-br from-brand-blue to-brand-lightBlue flex items-center justify-center font-serif text-xl font-bold text-brand-gold shadow-md group-hover:scale-105 transition-transform duration-300">
+          <div class="w-10 h-10 rounded-full border-2 border-brand-gold bg-gradient-to-br from-brand-blue to-brand-lightBlue flex items-center justify-center font-serif text-xl font-bold text-brand-gold shadow-md">
             OG
           </div>
           <div>
-            <span class="block text-lg font-bold tracking-wider font-serif text-white uppercase">
+            <span class="block text-base sm:text-lg font-bold tracking-wider font-serif text-white uppercase leading-none mb-1">
               {brandingData.title || "OG RECREATIONS"}
             </span>
-            <span class="block text-[10px] uppercase tracking-widest text-brand-gold font-medium">
+            <span class="block text-[9px] uppercase tracking-widest text-brand-gold font-medium leading-none">
               {brandingData.tagline || "The Original Stress Buster"}
             </span>
           </div>
@@ -58,25 +45,20 @@ const whatsappLink = `https://wa.me/${communicationData.whatsappNumber ? communi
       )}
     </a>
 
-    <!-- Navigation Menu Links (Desktop Layout Track) -->
+    <!-- Desktop Menu Navigation Links -->
     <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium tracking-wide">
       <a href="/og-recreations/" class="text-white hover:text-brand-gold transition duration-200">Home</a>
       <a href="/og-recreations/about" class="text-white hover:text-brand-gold transition duration-200">About Us</a>
       
-      <!-- Sub-Menu Roster Dropdown for Services -->
+      <!-- Dropdown -->
       <div class="relative group">
         <button class="text-white group-hover:text-brand-gold flex items-center gap-1 py-2 focus:outline-none transition">
           Services
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
         <div class="absolute left-0 mt-1 w-64 rounded-xl shadow-2xl bg-white border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 py-2">
           {cmsServices.map((srv) => (
-            <a 
-              href={`/og-recreations/services/${srv.data?.slugId || srv.slug}`} 
-              class="block px-4 py-2 text-sm text-brand-blue hover:bg-brand-bgLight hover:text-brand-gold font-semibold transition"
-            >
+            <a href={`/og-recreations/services/${srv.data?.slugId || srv.slug}`} class="block px-4 py-2 text-sm text-brand-blue hover:bg-brand-bgLight hover:text-brand-gold font-semibold transition">
               {srv.data?.title || srv.slug}
             </a>
           ))}
@@ -89,18 +71,97 @@ const whatsappLink = `https://wa.me/${communicationData.whatsappNumber ? communi
       <a href="/og-recreations/forms/contact" class="text-white hover:text-brand-gold transition duration-200">Contact Us</a>
     </nav>
 
-    <!-- Communication Quick Access Actions -->
-    <div class="hidden lg:flex items-center space-x-3">
-      {communicationData.callNumber && (
-        <a href={callLink} class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-blue font-bold text-xs transition-all duration-300">
-          Call Us
-        </a>
-      )}
-      {communicationData.whatsappNumber && (
-        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-xs transition-all duration-300">
-          WhatsApp
-        </a>
-      )}
+    <!-- Desktop Icons & Actions Hub -->
+    <div class="hidden lg:flex items-center space-x-4">
+      <!-- Dynamic Vector Icons Generator Base Loop -->
+      <div class="flex items-center space-x-2.5 mr-2">
+        {activeSocials.map((social) => (
+          <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-brand-gold transition-colors duration-200" title={`Follow our ${social.platform}`}>
+            {social.platform === 'facebook' && <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/></svg>}
+            {social.platform === 'instagram' && <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>}
+            {social.platform === 'twitter' && <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>}
+            {social.platform === 'linkedin' && <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>}
+            {social.platform === 'youtube' && <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>}
+            {social.platform === 'blog' && <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M19 20a2 2 0 002-2V8a2 2 0 00-2-2h-2M19 20H9a2 2 0 01-2-2v-5a2 2 0 012-2h10a2 2 0 012 2v5a2 2 0 01-2 2zM7 8h6v2H7V8zm0 4h3v2H7v-2z"/></svg>}
+          </a>
+        ))}
+      </div>
+      
+      {communicationData.callNumber && <a href={callLink} class="px-4 py-2 rounded-full border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-blue font-bold text-xs transition duration-300">Call Us</a>}
+      {communicationData.whatsappNumber && <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-500 font-bold text-xs transition duration-300">WhatsApp</a>}
+    </div>
+
+    <!-- Mobile Navigation Toggle Button -->
+    <button id="mobile-menu-toggle" class="xl:hidden text-white hover:text-brand-gold focus:outline-none p-2 rounded-lg" aria-label="Toggle Mobile Controls Navigation Menu">
+      <svg id="menu-icon-hamburger" class="w-6 h-6 block" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer Menu (Hidden Completely by Default via Toggle Utilities) -->
+  <div id="mobile-navigation-drawer" class="hidden xl:hidden bg-[#07172c] border-t border-brand-gold/20 shadow-2xl transition-all duration-300">
+    <div class="px-4 pt-4 pb-6 space-y-3 font-medium tracking-wide text-sm">
+      <a href="/og-recreations/" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">Home</a>
+      <a href="/og-recreations/about" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">About Us</a>
+      
+      <div class="py-2 border-b border-white/5">
+        <span class="block text-brand-gold font-bold text-xs uppercase tracking-widest mb-2">Our Services Roster</span>
+        <div class="pl-3 space-y-2 mt-1">
+          {cmsServices.map((srv) => (
+            <a href={`/og-recreations/services/${srv.data?.slugId || srv.slug}`} class="block text-gray-300 text-xs hover:text-brand-gold transition">
+              • {srv.data?.title || srv.slug}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href="/og-recreations/gallery" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">Gallery</a>
+      <a href="/og-recreations/forms/book" class="block text-brand-gold font-bold py-2 border-b border-white/5">Book Performance</a>
+      <a href="/og-recreations/forms/join" class="block text-white hover:text-brand-gold py-2 border-b border-white/5">Join Us</a>
+      <a href="/og-recreations/forms/contact" class="block text-white hover:text-brand-gold py-2">Contact Us</a>
+
+      <!-- Mobile Social Icons Line & Fast Action Channels Row -->
+      <div class="pt-4 border-t border-white/10 flex flex-col space-y-4">
+        <div class="flex items-center space-x-4 justify-center py-2 bg-white/5 rounded-xl">
+          {activeSocials.map((social) => (
+            <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-white hover:text-brand-gold transition" title={social.platform}>
+              {social.platform === 'facebook' && <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.8z"/></svg>}
+              {social.platform === 'instagram' && <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>}
+              {social.platform === 'twitter' && <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>}
+              {social.platform === 'linkedin' && <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>}
+              {social.platform === 'youtube' && <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>}
+              {social.platform === 'blog' && <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M19 20a2 2 0 002-2V8a2 2 0 00-2-2h-2M19 20H9a2 2 0 01-2-2v-5a2 2 0 012-2h10a2 2 0 012 2v5a2 2 0 01-2 2zM7 8h6v2H7V8zm0 4h3v2H7v-2z"/></svg>}
+            </a>
+          ))}
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          {communicationData.callNumber && <a href={callLink} class="px-4 py-2.5 rounded-xl border border-brand-gold text-brand-gold font-bold text-center text-xs">Call Us</a>}
+          {communicationData.whatsappNumber && <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-center text-xs">WhatsApp</a>}
+        </div>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  // Robust vanilla script execution for handling responsive actions
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const drawer = document.getElementById('mobile-navigation-drawer');
+  const burgerIcon = document.getElementById('menu-icon-hamburger');
+  const closeIcon = document.getElementById('menu-icon-close');
+
+  if (toggleBtn && drawer && burgerIcon && closeIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = drawer.classList.contains('hidden');
+      if (isHidden) {
+        drawer.classList.remove('hidden');
+        burgerIcon.classList.replace('block', 'hidden');
+        closeIcon.classList.replace('hidden', 'block');
+      } else {
+        drawer.classList.add('hidden');
+        burgerIcon.classList.replace('hidden', 'block');
+        closeIcon.classList.replace('block', 'hidden');
+      }
+    });
+  }
+</script>

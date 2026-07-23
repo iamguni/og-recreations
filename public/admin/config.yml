@@ -25,12 +25,20 @@ collections:
           - { label: "WhatsApp Default Text Lead Message", name: "whatsappText", widget: "text" }
           
       - name: "social_media"
-        label: "Social Media Channels URLs"
+        label: "Social Media Channels Customizer"
         file: "src/data/socials.json"
+        format: "json"
         fields:
-          - { label: "Facebook Page Profile URL", name: "facebook", widget: "string", required: false }
-          - { label: "Instagram Profile URL", name: "instagram", widget: "string", required: false }
-          - { label: "YouTube Channel Link", name: "youtube", widget: "string", required: false }
+          - label: "Active Social Platforms Matrix"
+            name: "channels"
+            widget: "list"
+            summary: "{{fields.platform}} - {{fields.url}}"
+            fields:
+              - label: "Target Platform Icon Identity"
+                name: "platform"
+                widget: "select"
+                options: ["facebook", "instagram", "twitter", "linkedin", "youtube", "blog"]
+              - { label: "Complete Profile Redirection URL", name: "url", widget: "string" }
 
       # 🛠️ SAFELY ADDED HERE INSIDE FILES MATRIX
       - name: "footer_architecture"
@@ -59,6 +67,7 @@ collections:
         file: "src/data/branding.json"
         fields:
           - { label: "Site Logo Graphic Asset (Hides text if uploaded)", name: "logo", widget: "image", required: false }
+          - { label: "Favicon File (.ico or .png format)", name: "favicon", widget: "image", required: false }
           - { label: "Fallback Site Title", name: "title", widget: "string" }
           - { label: "Fallback Site Tagline", name: "tagline", widget: "string" }
 

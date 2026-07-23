@@ -1,5 +1,27 @@
 {
-  "facebook": "https://www.facebook.com/ogrecreationsshow",
+  "channels": [
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/ogrecreationsshow"
+    },
+    {
+      "platform": "twitter",
+      "url": "https://x.com/ogrecreations"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://www.instagram.com/ogrecreationsshow/"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/ogrecreationsshow/"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/ogrecreationsshow/"
+    }
+  ],
   "instagram": "#",
+  "facebook": "https://www.facebook.com/ogrecreationsshow",
   "youtube": "#"
 }

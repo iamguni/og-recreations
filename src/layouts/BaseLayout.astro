@@ -1,27 +1,32 @@
 ---
+import brandingData from '../data/branding.json';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import FloatingBookButton from '../components/FloatingBookButton.astro';
-import ScrollToTop from '../components/ScrollToTop.astro';
-import '../styles/global.css';
+import '../styles/global.css'; // Adjust path based on your design system
 
-const { title = "OG Recreations - The Original Stress Buster" } = Astro.props;
+const { title } = Astro.props;
+
+// Determine dynamic favicon path fallback matching GitHub Pages sub-directories
+const rawFavicon = brandingData?.favicon;
+const computedFaviconSrc = rawFavicon
+  ? (rawFavicon.startsWith('http') || rawFavicon.startsWith('/og-recreations') 
+    ? rawFavicon 
+    : `/og-recreations${rawFavicon.startsWith('/') ? '' : '/'}${rawFavicon}`)
+  : '/og-recreations/favicon.svg'; // Standard absolute default fallback fallback
 ---
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/og-recreations/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href={computedFaviconSrc} />
+    <title>{title || brandingData?.title || "OG Recreations"}</title>
   </head>
-  <body class="bg-gray-50 text-gray-900 antialiased min-h-screen flex flex-col">
+  <body class="bg-white text-gray-900 flex flex-col min-h-screen font-sans">
     <Header />
     <main class="flex-grow">
       <slot />
     </main>
     <Footer />
-    <FloatingBookButton />
-    <ScrollToTop />
   </body>
 </html>
