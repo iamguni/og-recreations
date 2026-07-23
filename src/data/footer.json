@@ -3,11 +3,15 @@
   "columnSequence": [
     {
       "columnTitle": "Our Vision",
-      "columnText": "To revive corporate and community spirits through powerful literature, flawless cultural organization, and pristine artistic performances."
+      "columnText": "To revive corporate and community spirits through powerful literature, flawless cultural organization, and pristine artistic performances.",
+      "extraColumnTitle": "",
+      "extraText": ""
     },
     {
       "columnTitle": "Quick Links",
       "columnText": "",
+      "extraColumnTitle": "",
+      "extraText": "",
       "columnLinks": [
         {
           "linkLabel": "Home",
@@ -38,6 +42,8 @@
     {
       "columnTitle": "Our Services",
       "columnText": "",
+      "extraColumnTitle": "",
+      "extraText": "",
       "columnLinks": [
         {
           "linkLabel": "Entertainment Shows",
@@ -55,7 +61,9 @@
     },
     {
       "columnTitle": "Contact Info",
-      "columnText": "84, Suraj Kund Road, Near - Suraj Kund Park, Suraj Kund, Meerut-250002, Uttar Pradesh.\n\nOpen Hours: Mon – Sat 8:00 a.m. – 8:00 p.m.",
+      "columnText": "84, Suraj Kund Road, Near - Suraj Kund Park, Suraj Kund, Meerut-250002, Uttar Pradesh.",
+      "extraColumnTitle": "Open Hours :",
+      "extraText": "Mon – Sat 8:00 a.m. – 8:00 p.m.",
       "columnLinks": [
         {
           "linkLabel": "E-mail:manager@ogrecreations.com",

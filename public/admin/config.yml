@@ -57,6 +57,8 @@ collections:
             fields:
               - { label: "Column Title Header", name: "columnTitle", widget: "string" }
               - { label: "Column Presentation Text (For Vision Block)", name: "columnText", widget: "text", required: false }
+              - { label: "Extra Column Header", name: "extraColumnTitle", widget: "string" , required: false}
+              - { label: "Extra Text (e.g., Mon - Sun: 9:00 AM - 9:00 PM)", name: "extraText", widget: "string", required: false }
               - label: "Column Links Array List"
                 name: "columnLinks"
                 widget: "list"

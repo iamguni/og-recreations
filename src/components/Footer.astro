@@ -12,13 +12,24 @@ const activeSocials = socialsData?.channels || [];
         <h3 class="font-serif text-lg font-bold text-white tracking-wide border-b border-brand-gold/30 pb-2 mb-4">
           {col.columnTitle}
         </h3>
-        {col.columnText && ( <p class="text-sm leading-relaxed text-gray-400">{col.columnText}</p> )}
+        {col.columnText && ( <p class="text-sm leading-relaxed text-gray-400 mb-3">{col.columnText}</p> )}
+        
         {col.columnLinks && (
-          <ul class="space-y-2 text-sm font-medium">
+          <ul class="space-y-2 text-sm font-medium mb-3">
             {col.columnLinks.map((link) => (
               <li><a href={link.linkUrl} class="hover:text-brand-gold transition duration-150">{link.linkLabel}</a></li>
             ))}
           </ul>
+        )}
+
+        <!-- 🕒 Dynamic Extra Text Field Option Injected Natively Below Column Elements -->
+        {col.extraText && (
+          <div class="pt-2 mt-2 border-t border-white/10 text-gray-400 flex items-start gap-2">
+            <div class="text-xs font-medium leading-relaxed">
+              <span class="block text-[10px] uppercase tracking-wider text-brand-gold font-bold mb-0.5">{col.extraColumnTitle}</span>
+              {col.extraText}
+            </div>
+          </div>
         )}
       </div>
     ))}
