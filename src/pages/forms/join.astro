@@ -19,12 +19,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <form 
           id="app-script-form" 
           class="p-8 space-y-6" 
-          action={import.meta.env.PUBLIC_APPS_SCRIPT_URL}
           method="POST"
-          target="form-response-bridge"
         >
           <input type="hidden" name="pageUrl" value="/og-recreations/join" />
-          
+          <input type="hidden" name="apiUrl" id="apiUrl" value={import.meta.env.PUBLIC_APPS_SCRIPT_URL}/>
           <!-- 1. Role Category Selector Matrix -->
           <div>
             <label class="block text-sm font-bold text-brand-blue mb-3">Applying for *</label>
@@ -219,8 +217,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <!-- 📡 Hidden Iframe Response Receiver Bridge Element -->
   <iframe name="form-response-bridge" id="form-response-bridge" title="Form execution frame bridge" hidden></iframe>
 
-  <script is:inline>
-    // File inputs visual display binders
+<script is:inline>
+    // Visual text file name indicator trackers
     const photoInput = document.getElementById('file-upload');
     const photoText = document.getElementById('file-name-text');
     photoInput?.addEventListener('change', (e) => { photoText.innerText = e.target.files[0]?.name || "No file chosen"; });
@@ -233,8 +231,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const otherLangCheck = document.getElementById('lang-other-check');
     const otherLangInput = document.getElementById('lang-other-input');
     otherLangCheck?.addEventListener('change', (e) => {
-      otherLangInput.disabled = !e.target.checked;
-      if (!e.target.checked) otherLangInput.value = "";
+      if (otherLangInput) {
+        otherLangInput.disabled = !e.target.checked;
+        if (!e.target.checked) otherLangInput.value = "";
+      }
     });
 
     // Dynamic Conditional Layout State Engine
@@ -246,6 +246,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const realResumeUpload = document.getElementById('resume-upload');
 
     function updateFormLayout(roleValue) {
+      if (!specWrapper || !specLabel || !programWrapper || !resumeWrapper || !realResumeUpload) return;
       if (roleValue === "Subject Expert/Motivational Speaker") {
         specWrapper.classList.remove('hidden');
         specLabel.innerText = "Specialization (If Any)";
@@ -255,13 +256,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       } else {
         specWrapper.classList.add('hidden');
       }
-
       if (roleValue === "Subject Expert/Motivational Speaker") {
         programWrapper.classList.add('hidden');
       } else {
         programWrapper.classList.remove('hidden');
       }
-
       if (roleValue === "Subject Expert/Motivational Speaker" || roleValue === "Anchor") {
         resumeWrapper.classList.remove('hidden');
         realResumeUpload.required = true;
@@ -269,7 +268,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         resumeWrapper.classList.add('hidden');
         realResumeUpload.required = false;
         realResumeUpload.value = "";
-        resumeText.innerText = "No file chosen";
+        if (resumeText) resumeText.innerText = "No file chosen";
       }
     }
 
@@ -277,39 +276,83 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       radio.addEventListener('change', (e) => updateFormLayout(e.target.value));
     });
 
-    // Form Submission Pipeline Configuration via Iframe
+    // 🌟 HELPER TO READ INDIVIDUAL FILES AS DATA URLS (MATCHING DUMMY PROJECT)
+    const readFileAsDataURL = (file) => new Promise((resolve) => {
+      if (!file) resolve(null);
+      const reader = new FileReader();
+      reader.onload = (e) => resolve({ data: e.target.result, name: file.name, type: file.type });
+      reader.readAsDataURL(file);
+    });
+
+    // Form Submission Processing Pipeline
     const form = document.getElementById('app-script-form');
     const btn = document.getElementById('submit-btn');
     const successAlert = document.getElementById('form-alert-success');
-    const iframeBridge = document.getElementById('form-response-bridge');
 
-    let isSubmitting = false;
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (btn) { btn.disabled = true; btn.innerText = "Uploading Media & Profile..."; }
+      if (successAlert) successAlert.classList.add('hidden');
 
-    // 1. Capture Form Submission Trigger Event
-    form?.addEventListener('submit', () => {
-      isSubmitting = true;
-      btn.disabled = true;
-      btn.innerText = "Transmitting Profile...";
-      successAlert.classList.add('hidden');
-    });
-
-    // 2. Capture Iframe load state to cleanly confirm successful transmission completion
-    iframeBridge?.addEventListener('load', () => {
-      if (isSubmitting) {
-        isSubmitting = false;
-        btn.disabled = false;
-        btn.innerText = "Submit Application";
+      try {
+        const formData = new FormData(form);
+        const formParams = new URLSearchParams();
         
-        // Trigger success view state updates
-        successAlert.classList.remove('hidden');
+        const programs = [];
+        const languages = [];
+
+        // Build base dataset strings
+        formData.forEach((value, key) => {
+          if (key === 'programTypes') { programs.push(value); }
+          else if (key === 'languages') { languages.push(value); }
+          else if (key !== 'recentPhoto' && key !== 'resumeFile') {
+            formParams.append(key, value);
+          }
+        });
+
+        formParams.append('programTypes', programs.join(', '));
+        formParams.append('languages', languages.join(', '));
+        formParams.append('pageUrl', window.location.href);
+
+        // 📸 Convert and attach Photo details if present
+        if (photoInput && photoInput.files.length > 0) {
+          const photoFileObj = await readFileAsDataURL(photoInput.files[0]);
+          formParams.append('recentPhotoData', photoFileObj.data);
+          formParams.append('recentPhotoName', photoFileObj.name);
+          formParams.append('recentPhotoType', photoFileObj.type);
+        }
+
+        // 📄 Convert and attach Resume details if present
+        if (resumeInput && resumeInput.files.length > 0) {
+          const resumeFileObj = await readFileAsDataURL(resumeInput.files[0]);
+          formParams.append('resumeFileData', resumeFileObj.data);
+          formParams.append('resumeFileName', resumeFileObj.name);
+          formParams.append('resumeFileType', resumeFileObj.type);
+        }
+
+        const WEB_APP_URL = document.getElementById('apiUrl').value;
+
+        // Dispatch payload via 'no-cors' URL-encoded parameters
+        await fetch(WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formParams.toString()
+        });
+
+        if (successAlert) successAlert.classList.remove('hidden');
         form.reset();
         
-        // Restore dynamic hidden form blocks back to pristine layout state
-        specWrapper.classList.add('hidden');
-        programWrapper.classList.remove('hidden');
-        resumeWrapper.classList.add('hidden');
-        photoText.innerText = "No file chosen";
-        resumeText.innerText = "No file chosen";
+        if (photoText) photoText.innerText = "No file chosen";
+        if (resumeText) resumeText.innerText = "No file chosen";
+        if (specWrapper) specWrapper.classList.add('hidden');
+        if (programWrapper) programWrapper.classList.remove('hidden');
+        if (resumeWrapper) resumeWrapper.classList.add('hidden');
+
+      } catch (err) {
+        console.error("Submission failed processing:", err);
+      } finally {
+        if (btn) { btn.disabled = false; btn.innerText = "Submit Application"; }
       }
     });
   </script>
