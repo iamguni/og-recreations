@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import communicationData from '../data/communication.json';
+
+// Dynamic formatting for call actions
+const callLink = `tel:${communicationData.callNumber ? communicationData.callNumber.replace(/\s+/g, '') : ''}`;
+---
+
+<BaseLayout title="Terms and Conditions - OG Recreations">
+  <!-- Content Top Header Banner Block -->
+  <div class="bg-gradient-to-br from-brand-blue via-[#0c233f] to-[#061527] text-white py-16 border-b border-brand-gold/20 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
+      <span class="text-brand-gold uppercase tracking-widest text-xs font-bold font-mono block mb-2">Legal Operations Document</span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-wide mb-4">Terms and Conditions</h1>
+      <div class="h-1 w-20 bg-brand-gold mx-auto rounded-full mb-3"></div>
+      <p class="text-xs text-gray-400 font-mono">Effective Date: June 13, 2024 &nbsp;|&nbsp; Last Updated: June 13, 2024</p>
+    </div>
+  </div>
+
+  <!-- Document Narrative Content Layout -->
+  <section class="py-16 bg-gray-50 flex-grow min-h-[60vh] text-gray-700 font-sans leading-relaxed">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 bg-white border border-gray-200/60 rounded-3xl p-8 sm:p-12 shadow-sm">
+      
+      <p class="mb-6 text-sm sm:text-base font-medium text-gray-600">
+        Please read these Terms of Use (“Terms”, “Terms of Use”) carefully before using the <a href="https://ogrecreations.com" target="_blank" rel="noopener noreferrer" class="text-brand-blue hover:text-brand-gold underline font-bold">https://ogrecreations.com</a> website (the “Service”) operated by OG Recreations (“us”, we”, or “our”).
+      </p>
+
+      <p class="mb-6 text-sm sm:text-base">
+        Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.
+      </p>
+
+      <p class="mb-8 text-sm sm:text-base font-medium text-gray-600">
+        By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.
+      </p>
+
+      <hr class="border-gray-200 my-8" />
+
+      <!-- Section: Intellectual Property -->
+      <div class="mb-8">
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-brand-blue mb-4">Intellectual Property</h2>
+        <p class="text-sm sm:text-base">
+          The Service and its original content, features and functionality are and will remain the exclusive property of OG Recreations and its licensors.
+        </p>
+      </div>
+
+      <!-- Section: Links To Other Web Sites -->
+      <div class="mb-8">
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-brand-blue mb-4">Links To Other Web Sites</h2>
+        <p class="text-sm sm:text-base mb-4">
+          Our Service may contain links to third-party web sites or services that are not owned or controlled by OG Recreations.
+        </p>
+        <p class="text-sm sm:text-base mb-4">
+          OG Recreations has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that OG Recreations shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+        </p>
+        <p class="text-sm sm:text-base">
+          We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.
+        </p>
+      </div>
+
+      <!-- Section: Termination -->
+      <div class="mb-8">
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-brand-blue mb-4">Termination</h2>
+        <p class="text-sm sm:text-base mb-4">
+          We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.
+        </p>
+        <p class="text-sm sm:text-base">
+          All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.
+        </p>
+      </div>
+
+      <!-- Section: Disclaimer -->
+      <div class="mb-8">
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-brand-blue mb-4">Disclaimer</h2>
+        <p class="text-sm sm:text-base bg-gray-50 border border-gray-200 rounded-2xl p-5 font-mono text-xs sm:text-sm text-gray-600 leading-normal">
+          Your use of the Service is at your sole risk. The Service is provided on an “AS IS” and “AS AVAILABLE” basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.
+        </p>
+      </div>
+
+      <!-- Section: Governing Law -->
+      <div class="mb-8">
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-brand-blue mb-4">Governing Law</h2>
+        <p class="text-sm sm:text-base">
+          These Terms shall be governed and construed in accordance with the laws of India without regard to its conflict of law provisions.
+        </p>
+        <p class="text-sm sm:text-base mt-4">
+          Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.
+        </p>
+      </div>
+
+      <!-- Section: Changes -->
+      <div class="mb-8">
+        <h2 class="font-serif text-xl sm:text-2xl font-bold text-brand-blue mb-4">Changes</h2>
+        <p class="text-sm sm:text-base mb-4">
+          We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 15 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+        </p>
+        <p class="text-sm sm:text-base">
+          By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.
+        </p>
+      </div>
+
+      <!-- Section: Contact Desk -->
+      <div class="bg-brand-bgLight/40 border border-brand-blue/10 rounded-2xl p-6 mt-10">
+        <h2 class="font-serif text-lg font-bold text-brand-blue mb-2">Contact Us</h2>
+        <p class="text-sm mb-4">If you have any questions or require formal clarification regarding these terms, please connect with us:</p>
+        <div class="flex flex-wrap gap-4 text-xs font-semibold">
+          <a href="/og-recreations/forms/contact" class="px-4 py-2 bg-brand-blue text-white rounded-xl hover:bg-brand-blue/90 transition">
+            Open Help Desk Form
+          </a>
+          {communicationData.callNumber && (
+            <a href={callLink} class="px-4 py-2 border border-brand-blue text-brand-blue rounded-xl hover:bg-brand-blue hover:text-white transition">
+              Call Representative
+            </a>
+          )}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
