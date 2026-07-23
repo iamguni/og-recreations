@@ -28,6 +28,10 @@
         {
           "linkLabel": "Book An Event",
           "linkUrl": "/og-recreations/book"
+        },
+        {
+          "linkLabel": "Reknowned Poets",
+          "linkUrl": "/og-recreations/poets"
         }
       ]
     },
