@@ -8,7 +8,6 @@ dist/
 .astro/
 
 # Environment variables
-.env
 .env.*
 !.env.example
 

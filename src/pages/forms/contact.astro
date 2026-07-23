@@ -16,9 +16,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </p>
         </div>
 
-        <!-- Submission Contact Form Layout -->
-        <form id="app-script-contact-form" class="p-8 space-y-6">
-          <input type="hidden" name="formType" value="GENERAL_CONTACT_DESK" />
+        <!-- Submission Contact Form Layout (MODIFIED FOR IFRAME TARGET ROUTING) -->
+        <form 
+          id="app-script-contact-form" 
+          class="p-8 space-y-6" 
+          action={import.meta.env.PUBLIC_APPS_SCRIPT_URL}
+          method="POST"
+          target="form-response-bridge"
+        >
+          <input type="hidden" name="pageUrl" value="/or-recreatios/contact" />
 
           <!-- Core Fields Grid Layer -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -26,7 +32,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               <label class="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
               <input 
                 type="text" 
-                name="firstName" 
+                name="name" 
                 required 
                 class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" 
                 placeholder="Enter your first name" 
@@ -90,6 +96,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- 📡 Hidden Iframe Response Router Bridge Element -->
+  <iframe name="form-response-bridge" id="form-response-bridge" title="Form execution frame container" hidden></iframe>
+
   <!-- Interactive Script Mechanics Engine -->
   <script is:inline>
     // Live Character Counter Logic Implementation
@@ -111,43 +120,34 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       }
     });
 
-    // Replace parameter code macro token with active deployed Apps Script deployment macro execution link string URL
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec";
-
     const form = document.getElementById('app-script-contact-form');
     const btn = document.getElementById('submit-contact-btn');
     const successAlert = document.getElementById('contact-alert-success');
     const errorAlert = document.getElementById('contact-alert-error');
+    const iframeBridge = document.getElementById('form-response-bridge');
 
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
+    let isSubmitting = false;
+
+    // 1. Monitor Form Submission Action
+    form?.addEventListener('submit', () => {
+      isSubmitting = true;
       btn.disabled = true;
       btn.innerHTML = `<svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Dispatched Matrix Transmission...`;
       successAlert.classList.add('hidden');
       errorAlert.classList.add('hidden');
+    });
 
-      const formData = new FormData(form);
-      const dataObj = {};
-      formData.forEach((value, key) => { dataObj[key] = value; });
-      
-      try {
-        await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dataObj)
-        });
+    // 2. Monitor Iframe load state to cleanly confirm successful transmission completion
+    iframeBridge?.addEventListener('load', () => {
+      if (isSubmitting) {
+        isSubmitting = false;
+        btn.disabled = false;
+        btn.innerText = "Send Message";
         
+        // Trigger success feedback state
         successAlert.classList.remove('hidden');
         form.reset();
         if (charCount) charCount.innerText = "0 / 180";
-      } catch (err) {
-        console.error(err);
-        errorAlert.classList.remove('hidden');
-      } finally {
-        btn.disabled = false;
-        btn.innerText = "Send Message";
       }
     });
   </script>
