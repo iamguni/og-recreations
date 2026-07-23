@@ -11,13 +11,13 @@ local_backend: true
 
 collections:
   - name: "global_settings"
-    label: "Global Elements Suite"
+    label: "Global Settings"
     delete: false
     editor:
       preview: false
     files:
       - name: "communication_desk"
-        label: "Primary Communication Nodes"
+        label: "Contact Information"
         file: "src/data/communication.json"
         fields:
           - { label: "Direct Call Number", name: "callNumber", widget: "string" }
@@ -25,7 +25,7 @@ collections:
           - { label: "WhatsApp Default Text Lead Message", name: "whatsappText", widget: "text" }
           
       - name: "social_media"
-        label: "Social Media Channels Customizer"
+        label: "Social Media Matrix"
         file: "src/data/socials.json"
         format: "json"
         fields:
@@ -42,7 +42,7 @@ collections:
 
       # 🛠️ SAFELY ADDED HERE INSIDE FILES MATRIX
       - name: "footer_architecture"
-        label: "4-Column Footer Configuration"
+        label: "Footer Configuration"
         file: "src/data/footer.json"
         fields:
           - { label: "Copyright Sub-text Notice", name: "copyrightNotice", widget: "string" }
@@ -63,7 +63,7 @@ collections:
 
         # 👇 THIS SPECIFIC BLOCK ADDS THE OPTIONS TO YOUR CMS PANEL
       - name: "site_branding"
-        label: "Global Header Branding"
+        label: "Header Configuration"
         file: "src/data/branding.json"
         fields:
           - { label: "Site Logo Graphic Asset (Hides text if uploaded)", name: "logo", widget: "image", required: false }
@@ -73,7 +73,7 @@ collections:
 
 # 2. ENTRY FOLDER COLLECTION: Hero Sliders
   - name: "hero_sliders"
-    label: "Home Image Sliders"
+    label: "Sliders Configuration"
     folder: "src/content/sliders"
     create: true
     slug: "{{title}}"
@@ -102,7 +102,7 @@ collections:
 
   # 4. ENTRY FOLDER COLLECTION: Institutional Partners
   - name: "institutional_partners"
-    label: "Institutional Partners Grid"
+    label: "Partners Grid"
     folder: "src/content/partners"
     create: true
     slug: "{{title}}"
@@ -114,7 +114,7 @@ collections:
 
 # 5. ENTRY FOLDER COLLECTION: Synchronized 3-Pillar Services
   - name: "synchronized_services"
-    label: "Dynamic 3-Pillar Services"
+    label: "Services Configuration"
     folder: "src/content/services"
     create: true
     slug: "{{slugId}}"
