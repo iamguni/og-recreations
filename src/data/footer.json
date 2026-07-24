@@ -15,39 +15,39 @@
       "columnLinks": [
         {
           "linkLabel": "Home",
-          "linkUrl": "/og-recreations/"
+          "linkUrl": "/"
         },
         {
           "linkLabel": "About Us",
-          "linkUrl": "/og-recreations/about"
+          "linkUrl": "/about"
         },
         {
           "linkLabel": "Event Gallery",
-          "linkUrl": "/og-recreations/gallery"
+          "linkUrl": "/gallery"
         },
         {
           "linkLabel": "Join Us",
-          "linkUrl": "/og-recreations/join"
+          "linkUrl": "/join"
         },
         {
           "linkLabel": "Book An Event",
-          "linkUrl": "/og-recreations/book"
+          "linkUrl": "/book"
         },
         {
           "linkLabel": "Reknowned Poets",
-          "linkUrl": "/og-recreations/poets"
+          "linkUrl": "/poets"
         },
         {
           "linkLabel": "Privacy Policy",
-          "linkUrl": "/og-recreations/privacy"
+          "linkUrl": "/privacy"
         },
         {
           "linkLabel": "Terms & Conditions",
-          "linkUrl": "/og-recreations/terms"
+          "linkUrl": "/terms"
         },
         {
           "linkLabel": "FAQ",
-          "linkUrl": "/og-recreations/faq"
+          "linkUrl": "/faq"
         }
       ]
     },
