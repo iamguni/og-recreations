@@ -14,8 +14,8 @@ const rawFavicon = brandingData?.favicon;
 const computedFaviconSrc = rawFavicon
   ? (rawFavicon.startsWith('http') || rawFavicon.startsWith('/og-recreations') 
     ? rawFavicon 
-    : `/og-recreations${rawFavicon.startsWith('/') ? '' : '/'}${rawFavicon}`)
-  : '/og-recreations/favicon.svg'; // Standard absolute default fallback fallback
+    : `${rawFavicon.startsWith('/') ? '' : '/'}${rawFavicon}`)
+  : '/favicon.svg'; // Standard absolute default fallback fallback
 ---
 <!doctype html>
 <html lang="en" class="scroll-smooth">
