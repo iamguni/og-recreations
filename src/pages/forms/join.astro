@@ -200,7 +200,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
 
           <div id="form-alert-success" class="hidden p-4 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
-            ✓ Success! Your comprehensive professional profile has been written directly to our Google Sheets configuration database using Apps Script.
+            ✓ Success! Your professional profile has been submitted successfully. Our team will review your application and get back to you shortly.
+          </div>
+          <div id="form-alert-error" class="hidden p-4 rounded-xl bg-rose-50 text-rose-800 text-xs font-semibold border border-rose-200">
+            ✕ Something went wrong on our end. Please double-check your fields and give it another shot.
           </div>
 
           <div class="pt-2">
@@ -288,11 +291,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const form = document.getElementById('app-script-form');
     const btn = document.getElementById('submit-btn');
     const successAlert = document.getElementById('form-alert-success');
+    const errorAlert = document.getElementById('form-alert-error');
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (btn) { btn.disabled = true; btn.innerText = "Uploading Media & Profile..."; }
+      if (btn) { btn.disabled = true; btn.innerText = "Submitting your profile..."; }
       if (successAlert) successAlert.classList.add('hidden');
+      if (errorAlert) errorAlert.classList.add('hidden');
 
       try {
         const formData = new FormData(form);
@@ -351,6 +356,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       } catch (err) {
         console.error("Submission failed processing:", err);
+        if (errorAlert) {
+          errorAlert.classList.remove('hidden');
+        }
       } finally {
         if (btn) { btn.disabled = false; btn.innerText = "Submit Application"; }
       }
