@@ -27,11 +27,11 @@
         },
         {
           "linkLabel": "Join Us",
-          "linkUrl": "/join"
+          "linkUrl": "/forms/join"
         },
         {
           "linkLabel": "Book An Event",
-          "linkUrl": "/book"
+          "linkUrl": "/forms/book"
         },
         {
           "linkLabel": "Reknowned Poets",
