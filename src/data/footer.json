@@ -59,15 +59,15 @@
       "columnLinks": [
         {
           "linkLabel": "Entertainment Shows",
-          "linkUrl": "/og-recreations/services/entertainment"
+          "linkUrl": "/services/entertainment"
         },
         {
           "linkLabel": "Speakers & Workshops",
-          "linkUrl": "/og-recreations/services/speakers-workshops"
+          "linkUrl": "/services/speakers-workshops"
         },
         {
           "linkLabel": "Professional Anchoring",
-          "linkUrl": "/og-recreations/services/anchoring"
+          "linkUrl": "/services/anchoring"
         }
       ]
     },
