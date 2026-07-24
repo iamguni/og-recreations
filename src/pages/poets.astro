@@ -64,7 +64,7 @@ const listPoets = listPoetsContent.map(entry => entry.data);
           if (hasPhoto) {
             computedImgSrc = rawImg.startsWith('http') || rawImg.startsWith('/og-recreations') 
               ? rawImg 
-              : `/og-recreations${rawImg.startsWith('/') ? '' : '/'}${rawImg}`;
+              : `${rawImg.startsWith('/') ? '' : '/'}${rawImg}`;
           }
 
           return (
