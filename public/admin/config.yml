@@ -130,6 +130,9 @@ collections:
     create: true
     slug: "{{slugId}}"
     format: "json"
+    sortable_fields:
+      - "weight"
+      - "title"
     fields:
       - { label: "Display Weight (Lower numbers show first)", name: "weight", widget: "number", default: 10, min: 1 }
       - { label: "Service Pillar Title", name: "title", widget: "string" }
