@@ -35,6 +35,7 @@ const partners = defineCollection({
 const services = defineCollection({
   type: 'data', // Updated from 'content' to accept JSON structures
   schema: z.object({
+    weight: z.number().optional(),
     title: z.string(),
     slugId: z.string(),
     image: z.string(),

@@ -15,6 +15,13 @@ const sortedChronicles = cmsChronicles.sort((a, b) => {
   return yearB.localeCompare(yearA);
 });
 
+// 2. 🌟 Sort them cleanly by weight (lowest number first)
+const sortedServices = cmsServices.sort((a, b) => {
+  const weightA = a.data.weight ?? 10;
+  const weightB = b.data.weight ?? 10;
+  return weightA - weightB;
+});
+
 // Duplicate the array to create a seamless infinite loop illusion
 const scrollingPartners = [...cmsPartners, ...cmsPartners, ...cmsPartners];
 ---
@@ -31,7 +38,7 @@ const scrollingPartners = [...cmsPartners, ...cmsPartners, ...cmsPartners];
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {cmsServices.map((srv, idx) => (
+        {sortedServices.map((srv, idx) => (
           <div class="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div class="h-48 w-full relative bg-brand-blue overflow-hidden shrink-0">

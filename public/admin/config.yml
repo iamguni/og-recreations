@@ -131,6 +131,7 @@ collections:
     slug: "{{slugId}}"
     format: "json"
     fields:
+      - { label: "Display Weight (Lower numbers show first)", name: "weight", widget: "number", default: 10, min: 1 }
       - { label: "Service Pillar Title", name: "title", widget: "string" }
       - { label: "Unique Service URL Route Identifier", name: "slugId", widget: "string" }
       - { label: "Service Main Visual Card Image", name: "image", widget: "image" }

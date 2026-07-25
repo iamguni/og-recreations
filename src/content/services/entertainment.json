@@ -1,4 +1,5 @@
 {
+  "weight": 1,
   "title": "Entertainment Shows",
   "slugId": "entertainment",
   "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1920&q=80",
@@ -11,7 +12,12 @@
       "energyVibe": "High / Engaging",
       "targetAudience": "Family & Corporate",
       "subServiceImage": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Renowned poets from across the country", "Diverse themes and styles", "Interactive sessions with the audience", "Celebration of linguistic and cultural heritage"]
+      "deliveryMetrics": [
+        "Renowned poets from across the country",
+        "Diverse themes and styles",
+        "Interactive sessions with the audience",
+        "Celebration of linguistic and cultural heritage"
+      ]
     },
     {
       "subServiceTitle": "Mushairas",
@@ -20,7 +26,12 @@
       "energyVibe": "Elegant / Deep",
       "targetAudience": "Connoisseurs & Elite",
       "subServiceImage": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Esteemed Urdu poets", "Engaging and heartfelt recitations", "Audience participation and response", "Fusion of classical and contemporary poetry"]
+      "deliveryMetrics": [
+        "Esteemed Urdu poets",
+        "Engaging and heartfelt recitations",
+        "Audience participation and response",
+        "Fusion of classical and contemporary poetry"
+      ]
     },
     {
       "subServiceTitle": "Comedy Shows",
@@ -29,7 +40,12 @@
       "energyVibe": "Explosive / Fun",
       "targetAudience": "All Demographics",
       "subServiceImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Talented comedians with unique styles", "Variety of comedy genres (stand-up, sketch, improv)", "Audience interaction and engagement", "Uplifting and entertaining atmosphere"]
+      "deliveryMetrics": [
+        "Talented comedians with unique styles",
+        "Variety of comedy genres (stand-up, sketch, improv)",
+        "Audience interaction and engagement",
+        "Uplifting and entertaining atmosphere"
+      ]
     },
     {
       "subServiceTitle": "Music Concerts",
@@ -38,7 +54,12 @@
       "energyVibe": "Stadium Electric",
       "targetAudience": "Massive Crowds",
       "subServiceImage": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Diverse musical genres (rock, pop, classical, jazz, etc.)", "Live performances by acclaimed artists", "High-quality sound and lighting", "Interactive and energetic environment"]
+      "deliveryMetrics": [
+        "Diverse musical genres (rock, pop, classical, jazz, etc.)",
+        "Live performances by acclaimed artists",
+        "High-quality sound and lighting",
+        "Interactive and energetic environment"
+      ]
     },
     {
       "subServiceTitle": "Stand-up Shows",
@@ -47,7 +68,12 @@
       "energyVibe": "Intimate / Lively",
       "targetAudience": "Youth & Corporates",
       "subServiceImage": "https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Renowned stand-up comedians", "Original and relatable humor", "Intimate and lively setting", "Opportunities for audience interaction"]
+      "deliveryMetrics": [
+        "Renowned stand-up comedians",
+        "Original and relatable humor",
+        "Intimate and lively setting",
+        "Opportunities for audience interaction"
+      ]
     },
     {
       "subServiceTitle": "Dance Performances",
@@ -56,7 +82,12 @@
       "energyVibe": "Mesmerizing Visuals",
       "targetAudience": "Cultural Galas",
       "subServiceImage": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Wide range of dance styles", "Choreographed by professional dancers", "Visual and artistic excellence", "Captivating performances that tell a story"]
+      "deliveryMetrics": [
+        "Wide range of dance styles",
+        "Choreographed by professional dancers",
+        "Visual and artistic excellence",
+        "Captivating performances that tell a story"
+      ]
     },
     {
       "subServiceTitle": "Theatrical Plays",
@@ -65,7 +96,12 @@
       "energyVibe": "Immersive Narrative",
       "targetAudience": "Drama Enthusiasts",
       "subServiceImage": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Talented actors and directors", "Engaging and thought-provoking scripts", "High-quality production values", "Variety of genres (drama, comedy, tragedy, etc.)"]
+      "deliveryMetrics": [
+        "Talented actors and directors",
+        "Engaging and thought-provoking scripts",
+        "High-quality production values",
+        "Variety of genres (drama, comedy, tragedy, etc.)"
+      ]
     },
     {
       "subServiceTitle": "Magic Shows",
@@ -74,7 +110,12 @@
       "energyVibe": "Spellbinding / Curious",
       "targetAudience": "Family & Kids",
       "subServiceImage": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80",
-      "deliveryMetrics": ["Experienced magicians and illusionists", "Interactive and engaging acts", "Family-friendly entertainment", "Unforgettable magical moments"]
+      "deliveryMetrics": [
+        "Experienced magicians and illusionists",
+        "Interactive and engaging acts",
+        "Family-friendly entertainment",
+        "Unforgettable magical moments"
+      ]
     }
   ]
 }
