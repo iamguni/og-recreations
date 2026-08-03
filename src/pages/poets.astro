@@ -63,14 +63,9 @@ const listPoets = listPoetsContent.map(entry => entry.data);
 
           if (rawImg.trim() !== "") {
             // Isolate the filename from the path provided in the content collection collection 
-            const fileName = rawImg.split('/').pop();
-            const lookupKey = `/src/assets/images/poets/${fileName}`;
-            
-            // Exclusively check and extract from the glob mapping dictionary object registry
-            if (images[lookupKey]) {
-              computedImgSrc = images[lookupKey].default.src;
-              hasPhoto = true;
-            }
+              const fileName = rawImg in images;
+              computedImgSrc = fileName ? images[rawImg].default.src : ''
+              hasPhoto = true; // If the image exists in the glob, we have a photo to display
           }
 
           return (

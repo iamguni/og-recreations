@@ -53,11 +53,8 @@ const scrollingPartners = [...cmsPartners, ...cmsPartners, ...cmsPartners];
               computedServiceSrc = rawImg;
             } else {
               // 2. Otherwise, look for it locally inside the services assets folder
-              const fileName = rawImg.split('/').pop();
-              const lookupKey = `/src/assets/images/services/${fileName}`;
-              if (serviceImages[lookupKey]) {
-                computedServiceSrc = serviceImages[lookupKey].default.src;
-              }
+              const fileName = rawImg in serviceImages;
+              computedServiceSrc = fileName ? serviceImages[rawImg].default.src : ''
             }
           }
 
@@ -115,11 +112,8 @@ const scrollingPartners = [...cmsPartners, ...cmsPartners, ...cmsPartners];
             let computedEventSrc = "";
 
             if (rawImg.trim() !== "") {
-              const fileName = rawImg.split('/').pop();
-              const lookupKey = `/src/assets/images/events/${fileName}`;
-              if (chronicleImages[lookupKey]) {
-                computedEventSrc = chronicleImages[chronicleImages[lookupKey] ? lookupKey : ''].default.src;
-              }
+              const fileName = rawImg in chronicleImages;
+              computedEventSrc = fileName ? chronicleImages[rawImg].default.src : ''
             }
 
             return (
@@ -165,12 +159,9 @@ const scrollingPartners = [...cmsPartners, ...cmsPartners, ...cmsPartners];
           let hasLogo = false;
 
           if (rawLogo.trim() !== "") {
-            const fileName = rawLogo.split('/').pop();
-            const lookupKey = `/src/assets/images/partners/${fileName}`;
-            if (partnerLogos[lookupKey]) {
-              computedLogoSrc = partnerLogos[lookupKey].default.src;
+              const fileName = rawLogo in partnerLogos;
+              computedLogoSrc = fileName ? partnerLogos[rawLogo].default.src : '';
               hasLogo = true;
-            }
           }
 
           return (

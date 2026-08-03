@@ -27,11 +27,8 @@ const galleryImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/
               computedImgSrc = rawImg;
             } else {
               // 2. Fall back to local assets directory processing lookup
-              const fileName = rawImg.split('/').pop();
-              const lookupKey = `/src/assets/images/events/${fileName}`;
-              if (galleryImages[lookupKey]) {
-                computedImgSrc = galleryImages[lookupKey].default.src;
-              }
+              const fileName = rawImg in galleryImages;
+              computedImgSrc = fileName ? galleryImages[rawImg].default.src : ''
             }
           }
 
