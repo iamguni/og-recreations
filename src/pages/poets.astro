@@ -4,9 +4,10 @@ import { getCollection } from 'astro:content';
 
 // Safely gather all split JSON poet data records from your target content directory folder
 const listPoetsContent = await getCollection('poets');
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/poets/*.{jpeg,jpg,png,gif,webp}', { eager: true });
 const listPoets = listPoetsContent.map(entry => entry.data);
 ---
-
 
 <BaseLayout title="Renowned Poets Registry - OG Recreations">
   <!-- Top Banner Section -->
@@ -56,15 +57,20 @@ const listPoets = listPoetsContent.map(entry => entry.data);
           const specialty = poet.specialty || "";
           const bio = poet.bio || "";
           
-          // Image verification with standard path normalization
-          const rawImg = poet.image;
-          const hasPhoto = rawImg && rawImg.trim() !== "";
-          
+          const rawImg = poet.image || "";
           let computedImgSrc = "";
-          if (hasPhoto) {
-            computedImgSrc = rawImg.startsWith('http') || rawImg.startsWith('/og-recreations') 
-              ? rawImg 
-              : `${rawImg.startsWith('/') ? '' : '/'}${rawImg}`;
+          let hasPhoto = false;
+
+          if (rawImg.trim() !== "") {
+            // Isolate the filename from the path provided in the content collection collection 
+            const fileName = rawImg.split('/').pop();
+            const lookupKey = `/src/assets/images/poets/${fileName}`;
+            
+            // Exclusively check and extract from the glob mapping dictionary object registry
+            if (images[lookupKey]) {
+              computedImgSrc = images[lookupKey].default.src;
+              hasPhoto = true;
+            }
           }
 
           return (
@@ -73,7 +79,7 @@ const listPoets = listPoetsContent.map(entry => entry.data);
               data-searchable-string={`${name.toLowerCase()} ${penName.toLowerCase()} ${specialty.toLowerCase()}`}
             >
               <div>
-                <!-- Portrait Block Node (Renders image if true, fallback SVG icon if false) -->
+                <!-- Portrait Block Node -->
                 <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-5 shrink-0 border border-brand-gold/20 mx-auto md:mx-0 flex items-center justify-center bg-brand-bgLight text-brand-blue">
                   {hasPhoto ? (
                     <img 
